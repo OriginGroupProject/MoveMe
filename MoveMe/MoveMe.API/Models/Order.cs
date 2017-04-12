@@ -15,6 +15,8 @@ namespace MoveMe.API.Models
         public decimal Cost { get; set; }
         public bool Canceled { get; set; }
         
+        public int JobDetailId { get; set; }
+        
         // Navigation
 
         public virtual Company Company { get; set; }

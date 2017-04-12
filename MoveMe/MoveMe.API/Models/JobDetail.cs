@@ -17,8 +17,8 @@ namespace MoveMe.API.Models
         public string ToCity { get; set; }
         public string ToState { get; set; }
         public string ToZip { get; set; }
-        public DateTime MoveOut { get; set; }
-        public DateTime MoveIn { get; set; }
+        public DateTime? MoveOut { get; set; }
+        public DateTime? MoveIn { get; set; }
         public int NumBedroom { get; set; }
         public int NumPooper { get; set; }
         public int SqFeet { get; set; }

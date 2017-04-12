@@ -104,12 +104,15 @@ namespace MoveMe.API.Controllers
 
         // POST: api/Orders
         [ResponseType(typeof(Order))]
-        public IHttpActionResult PostOrder(Order order)
+        public IHttpActionResult PostOrder( Order order)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            var jobDetail = db.JobDetails.Find(order.JobDetailId);
+            order.JobDetail = jobDetail;
 
             db.Orders.Add(order);
             db.SaveChanges();

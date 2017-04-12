@@ -11,6 +11,7 @@ namespace MoveMe.API.Data
     {
         public MoveMeDataContext() : base("MoveMe")
         {
+            
             //Database.SetInitializer(
             //    new MigrateDatabaseToLatestVersion<MoveMeDataContext, Configuration>()
             //     );
@@ -77,9 +78,10 @@ namespace MoveMe.API.Data
             // Orders
 
             modelBuilder.Entity<Order>()
-                .HasRequired(order => order.JobDetail)
-                .WithRequiredDependent(jobDetail => jobDetail.Order)
-                .Map(m => m.MapKey("JobDetailId"));
+                .HasOptional(order => order.JobDetail)
+                .WithOptionalDependent(jobDetail => jobDetail.Order)
+                .Map(m => m.MapKey("JobDetailId")
+                );
 
             // Payment has many Orders
 
@@ -100,6 +102,7 @@ namespace MoveMe.API.Data
                 .HasOptional(user => user.Customer)
                 .WithOptionalDependent(customer => customer.User)
                 .Map(m => m.MapKey("CustomerId"));
+            modelBuilder.Entity<Order>().Ignore(o => o.JobDetailId);
         }
 
         //public System.Data.Entity.DbSet<MoveMe.API.Models.Company> Companies { get; set; }

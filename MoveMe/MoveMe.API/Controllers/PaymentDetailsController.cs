@@ -40,13 +40,13 @@ namespace MoveMe.API.Controllers
         [ResponseType(typeof(PaymentDetail))]
         public IHttpActionResult GetPaymentDetail(int id)
         {
-            PaymentDetail p = db.PaymentDetails.Find(id);
-            if (p == null)
+            PaymentDetail paymentDetail = db.PaymentDetails.Find(id);
+            if (paymentDetail == null)
             {
                 return NotFound();
             }
 
-            var resultSet = db.PaymentDetails.Select(paymentDetail => new
+            var resultSet = new
             {
                 paymentDetail.PaymentDetailId,
                 paymentDetail.CustomerId,
@@ -57,7 +57,7 @@ namespace MoveMe.API.Controllers
                 paymentDetail.City,
                 paymentDetail.State,
                 paymentDetail.Zip
-            });
+            };
             return Ok(resultSet);
         }
 
