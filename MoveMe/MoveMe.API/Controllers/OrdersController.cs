@@ -38,13 +38,13 @@ namespace MoveMe.API.Controllers
         [ResponseType(typeof(Order))]
         public IHttpActionResult GetOrder(int id)
         {
-            Order o = db.Orders.Find(id);
-            if (o == null)
+            Order order = db.Orders.Find(id);
+            if (order == null)
             {
                 return NotFound();
             }
 
-            var resultSet = db.Orders.Select(order => new
+            var resultSet =  new
             {
                 order.OrderId,
                 order.CustomerId,
@@ -54,7 +54,7 @@ namespace MoveMe.API.Controllers
                 order.Cost,
                 order.Canceled,
                 order.JobDetail
-            });
+            };
             return Ok(resultSet);
         }
 
@@ -117,7 +117,17 @@ namespace MoveMe.API.Controllers
             db.Orders.Add(order);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = order.OrderId }, order);
+            return CreatedAtRoute("DefaultApi", new { id = order.OrderId }, new
+            {
+                order.OrderId,
+                order.CustomerId,
+                order.CompanyId,
+                order.PaymentDetailId,
+                order.Rating,
+                order.Cost,
+                order.Canceled,
+                order.JobDetailId
+            });
         }
 
         // DELETE: api/Orders/5

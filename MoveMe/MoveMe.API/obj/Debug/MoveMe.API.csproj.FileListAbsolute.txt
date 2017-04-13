@@ -52,3 +52,8 @@ C:\dev\MoveMe\MoveMe\MoveMe.API\obj\Debug\MoveMe.API.csproj.GenerateResource.Cac
 C:\dev\MoveMe\MoveMe\MoveMe.API\obj\Debug\MoveMe.API.Migrations.SecondMigration.resources
 C:\dev\MoveMe\MoveMe\MoveMe.API\obj\Debug\MoveMe.API.Migrations.ThirdMigration.resources
 C:\dev\MoveMe\MoveMe\MoveMe.API\obj\Debug\MoveMe.API.Migrations.taketen.resources
+C:\dev\MoveMe\MoveMe\MoveMe.API\obj\Debug\MoveMe.API.Migrations.take23.resources
+C:\dev\MoveMe\MoveMe\MoveMe.API\bin\Geocoder.dll
+C:\dev\MoveMe\MoveMe\MoveMe.API\bin\Microsoft.SqlServer.Types.dll
+C:\dev\MoveMe\MoveMe\MoveMe.API\obj\Debug\MoveMe.API.Migrations.take53.resources
+C:\dev\MoveMe\MoveMe\MoveMe.API\obj\Debug\MoveMe.API.Migrations.take62.resources

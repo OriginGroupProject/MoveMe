@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Spatial;
 using System.Linq;
 using System.Web;
+using Geocoder;
 
 namespace MoveMe.API.Models
 {
@@ -24,16 +26,14 @@ namespace MoveMe.API.Models
         public int SqFeet { get; set; }
         public int Stairs { get; set; }
         public bool Elevator { get; set; }
-        public bool Over400 { get; set; }
-        public bool PackingAssistance { get; set; }
-        public bool ProtectiveMaterial { get; set; }
         public int NumMovers { get; set; }
         public int NumHours { get; set; }
         public int Distance { get; set; }
+        public DbGeography FromLocation { get; set; }
+        public DbGeography ToLocation { get; set; }
 
         // Navigation 
 
-        public virtual ICollection<RequiredEquipment> RequiredEquipments { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Order Order { get; set; }
 

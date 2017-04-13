@@ -10,7 +10,8 @@
     /* @ngInject */
     function MoversDashFactory($http, apiUrl) {
         var service = {
-            getCalendar : getCalendar
+            getCalendar : getCalendar,
+            getJobs : getJobs
         };
 
         return service;
@@ -21,6 +22,15 @@
               .then(function(response){
                 return response.data;
               });
+            }
+
+        function getJobs(id) {
+          return $http
+              .get(apiUrl + 'moversDash/jobdetails/'+ id)
+              .then(function(response){
+                return response.data;
+              });
         }
+
     }
 })();

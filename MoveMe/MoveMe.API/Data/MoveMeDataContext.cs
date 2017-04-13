@@ -19,12 +19,9 @@ namespace MoveMe.API.Data
 
         public IDbSet<Company> Companys { get; set; }
         public IDbSet<Customer> Customers { get; set; }
-        public IDbSet<Equipment> Equipments { get; set; }
-        public IDbSet<Inventory> Inventorys { get; set; }
         public IDbSet<JobDetail> JobDetails { get; set; }
         public IDbSet<Order> Orders { get; set; }
         public IDbSet<PaymentDetail> PaymentDetails { get; set; }
-        public IDbSet<RequiredEquipment> RequiredEquipments { get; set; }
         public IDbSet<User> Users { get; set; }
 
 
@@ -32,10 +29,6 @@ namespace MoveMe.API.Data
         {
             // Company has many inventories and many orders 
 
-            modelBuilder.Entity<Company>()
-                .HasMany(company => company.Inventorys)
-                .WithRequired(inventory => inventory.Company)
-                .HasForeignKey(inventory => inventory.CompanyId);
 
             modelBuilder.Entity<Company>()
                 .HasMany(company => company.Orders)
@@ -57,23 +50,6 @@ namespace MoveMe.API.Data
                 .WithRequired(jobDetail => jobDetail.Customer)
                 .HasForeignKey(jobDetail => jobDetail.CustomerId);
 
-            // Equipment has many inventories and many required equipment
-
-            modelBuilder.Entity<Equipment>()
-                .HasMany(equipment => equipment.Inventorys)
-                .WithRequired(inventory => inventory.Equipment)
-                .HasForeignKey(inventory => inventory.EquipmentId);
-            modelBuilder.Entity<Equipment>()
-                .HasMany(equipment => equipment.RequiredEquipments)
-                .WithRequired(requiredEquipment => requiredEquipment.Equipment)
-                .HasForeignKey(requiredEquipment => requiredEquipment.EquipmentId);
-
-            // Job Detail has many required equipment
-
-            modelBuilder.Entity<JobDetail>()
-                .HasMany(jobDetail => jobDetail.RequiredEquipments)
-                .WithRequired(requiredEquipment => requiredEquipment.JobDetail)
-                .HasForeignKey(requiredEquipment => requiredEquipment.JobDetailId);
 
             // Orders
 
@@ -104,7 +80,7 @@ namespace MoveMe.API.Data
                 .Map(m => m.MapKey("CustomerId"));
             modelBuilder.Entity<Order>().Ignore(o => o.JobDetailId);
         }
-
+        //THESE STAY
         //public System.Data.Entity.DbSet<MoveMe.API.Models.Company> Companies { get; set; }
 
        // public System.Data.Entity.DbSet<MoveMe.API.Models.Inventory> Inventories { get; set; }

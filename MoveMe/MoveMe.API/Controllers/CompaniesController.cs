@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Spatial;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -128,6 +129,10 @@ namespace MoveMe.API.Controllers
             {
                 return BadRequest(ModelState);
             }
+            var geocoder = new Geocoder.GeocodeService();
+            var location = geocoder.GeocodeLocation($"{company.StreetAddress} {company.City} {company.State} {company.Zip}");
+            company.Location = DbGeography.FromText($"POINT({location.Longitude} {location.Latitude})");
+            
 
             db.Companys.Add(company);
             db.SaveChanges();

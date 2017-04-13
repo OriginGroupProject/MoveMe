@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Spatial;
 using System.Linq;
 using System.Web;
 
@@ -20,11 +21,13 @@ namespace MoveMe.API.Models
         public string ClosingHour { get; set; }
         public string[] DaysOfWeek { get; set; }
         public decimal HourlyRate { get; set; }
+        public DbGeography Location { get; set; }
+    
+
         
         //Navigation
 
         public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<Inventory> Inventorys { get; set; }
         public virtual User User { get; set; }
 
 

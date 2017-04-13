@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Spatial;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -39,9 +40,6 @@ namespace MoveMe.API.Controllers
                 jobDetail.SqFeet,
                 jobDetail.Stairs,
                 jobDetail.Elevator,
-                jobDetail.Over400,
-                jobDetail.PackingAssistance,
-                jobDetail.ProtectiveMaterial,
                 jobDetail.NumMovers,
                 jobDetail.NumHours,
                 jobDetail.Distance
@@ -59,32 +57,32 @@ namespace MoveMe.API.Controllers
                 return NotFound();
             }
 
-            var resultSet = db.JobDetails.Select(jobDetail => new
+            var jobdetail = db.JobDetails.Find(id);
+
+            var resultSet = 
+                new
             {
-                jobDetail.JobDetailId,
-                jobDetail.CustomerId,
-                jobDetail.FromStreetAddress,
-                jobDetail.FromCity,
-                jobDetail.FromState,
-                jobDetail.FromZip,
-                jobDetail.ToStreetAddress,
-                jobDetail.ToCity,
-                jobDetail.ToState,
-                jobDetail.ToZip,
-                jobDetail.MoveOut,
-                jobDetail.MoveIn,
-                jobDetail.NumBedroom,
-                jobDetail.NumPooper,
-                jobDetail.SqFeet,
-                jobDetail.Stairs,
-                jobDetail.Elevator,
-                jobDetail.Over400,
-                jobDetail.PackingAssistance,
-                jobDetail.ProtectiveMaterial,
-                jobDetail.NumMovers,
-                jobDetail.NumHours,
-                jobDetail.Distance
-            });
+                jobdetail.JobDetailId,
+                jobdetail.CustomerId,
+                jobdetail.FromStreetAddress,
+                jobdetail.FromCity,
+                jobdetail.FromState,
+                jobdetail.FromZip,
+                jobdetail.ToStreetAddress,
+                jobdetail.ToCity,
+                jobdetail.ToState,
+                jobdetail.ToZip,
+                jobdetail.MoveOut,
+                jobdetail.MoveIn,
+                jobdetail.NumBedroom,
+                jobdetail.NumPooper,
+                jobdetail.SqFeet,
+                jobdetail.Stairs,
+                jobdetail.Elevator,
+                jobdetail.NumMovers,
+                jobdetail.NumHours,
+                jobdetail.Distance
+            };
             return Ok(resultSet);
         }
 
@@ -120,9 +118,6 @@ namespace MoveMe.API.Controllers
             dbJobDetail.SqFeet = jobDetail.SqFeet;
             dbJobDetail.Stairs = jobDetail.Stairs;
             dbJobDetail.Elevator = jobDetail.Elevator;
-            dbJobDetail.Over400 = jobDetail.Over400;
-            dbJobDetail.PackingAssistance = jobDetail.PackingAssistance;
-            dbJobDetail.ProtectiveMaterial = jobDetail.ProtectiveMaterial;
             dbJobDetail.NumMovers = jobDetail.NumMovers;
             dbJobDetail.NumHours = jobDetail.NumHours;
             dbJobDetail.Distance = jobDetail.Distance;
@@ -156,6 +151,14 @@ namespace MoveMe.API.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            var geocoder = new Geocoder.GeocodeService();
+
+            var fromLocation = geocoder.GeocodeLocation($"{jobDetail.FromStreetAddress} {jobDetail.FromCity} {jobDetail.FromState} {jobDetail.FromZip}");
+            var toLocation = geocoder.GeocodeLocation($"{jobDetail.ToStreetAddress} {jobDetail.ToCity} {jobDetail.ToState} {jobDetail.ToZip}");
+
+            jobDetail.FromLocation = DbGeography.FromText($"POINT({fromLocation.Longitude} {fromLocation.Latitude})");
+            jobDetail.ToLocation = DbGeography.FromText($"POINT({toLocation.Longitude} {toLocation.Latitude})");
 
             db.JobDetails.Add(jobDetail);
             db.SaveChanges();
@@ -195,9 +198,6 @@ namespace MoveMe.API.Controllers
                 jobDetail.SqFeet,
                 jobDetail.Stairs,
                 jobDetail.Elevator,
-                jobDetail.Over400,
-                jobDetail.PackingAssistance,
-                jobDetail.ProtectiveMaterial,
                 jobDetail.NumMovers,
                 jobDetail.NumHours,
                 jobDetail.Distance

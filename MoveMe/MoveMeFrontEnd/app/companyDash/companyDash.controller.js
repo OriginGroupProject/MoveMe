@@ -5,20 +5,35 @@
         .module('app.companyDash')
         .controller('CompanyDashController', CompanyDashController);
 
-    CompanyDashController.$inject = ['ordersFactory', 'jobDetailFactory', 'companiesFactory'];
+    CompanyDashController.$inject = [ 'MoversDashFactory', 'companiesFactory', '$stateparams'];
 
     /* @ngInject */
-    function CompanyDashController(ordersFactory, jobDetailFactory, companiesFactory) {
+    function CompanyDashController(MoversDashFactory, companiesFactory, $stateparams) {
         var vm = this;
+
 
         activate();
 
         function activate() {
-          ordersFactory
-            .getAll()
+          var id = $stateparams.id;
+          MoversDashFactory
+            .getCalendar(id)
             .then(function(data) {
-              vm.orders = data;
+              vm.calendar = data;
             })
-        }
+
+
+        MoversDashFactory
+            .getJobs(id)
+            .then(function(data){
+              vm.jobs = data;
+            })
+
+        companiesFactory
+            .getById(id)
+            .then(function(data){
+              vm.company = data;
+            })
+    }
     }
 })();
