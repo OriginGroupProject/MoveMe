@@ -32,8 +32,6 @@ namespace MoveMe.API.Controllers
                 company.Zip,
                 company.Employees,
                 company.Radius,
-                company.OpeningHour,
-                company.ClosingHour,
                 company.HourlyRate
             });
 
@@ -45,13 +43,13 @@ namespace MoveMe.API.Controllers
         [ResponseType(typeof(Company))]
         public IHttpActionResult GetCompany(int id)
         {
-            Company c = db.Companys.Find(id);
-            if (c == null)
+            Company company = db.Companys.Find(id);
+            if (company == null)
             {
                 return NotFound();
             }
 
-                var resultSet = db.Companys.Select(company => new
+                var resultSet = new
                 {
                     company.CompanyId,
                     company.CompanyName,
@@ -62,10 +60,8 @@ namespace MoveMe.API.Controllers
                     company.Zip,
                     company.Employees,
                     company.Radius,
-                    company.OpeningHour,
-                    company.ClosingHour,
                     company.HourlyRate
-                });
+                };
 
 
                 return Ok(resultSet);
@@ -96,8 +92,6 @@ namespace MoveMe.API.Controllers
             dbCompany.Zip = company.Zip;
             dbCompany.Employees = company.Employees;
             dbCompany.Radius = company.Radius;
-            dbCompany.OpeningHour = company.OpeningHour;
-            dbCompany.ClosingHour = company.ClosingHour;
             dbCompany.HourlyRate = company.HourlyRate;
             db.Entry(dbCompany).State = EntityState.Modified;
 
@@ -144,16 +138,16 @@ namespace MoveMe.API.Controllers
         [ResponseType(typeof(Company))]
         public IHttpActionResult DeleteCompany(int id)
         {
-            Company c = db.Companys.Find(id);
-            if (c == null)
+            Company company = db.Companys.Find(id);
+            if (company == null)
             {
                 return NotFound();
             }
 
-            db.Companys.Remove(c);
+            db.Companys.Remove(company);
             db.SaveChanges();
 
-            var resultSet = db.Companys.Select(company => new
+            var resultSet = new
             {
                 company.CompanyId,
                 company.CompanyName,
@@ -164,10 +158,8 @@ namespace MoveMe.API.Controllers
                 company.Zip,
                 company.Employees,
                 company.Radius,
-                company.OpeningHour,
-                company.ClosingHour,
                 company.HourlyRate
-            });
+            };
 
 
             return Ok(resultSet);

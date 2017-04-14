@@ -5,21 +5,38 @@
         .module('app.wizard')
         .controller('WizardController', WizardController);
 
-    WizardController.$inject = ['jobDetailFactory'];
+    WizardController.$inject = [];
 
     /* @ngInject */
-    function WizardController(jobDetailFactory) {
+    function WizardController() {
         var vm = this;
+
+        vm.enterValidation = function(){
+            return true;
+        };
+
+        vm.exitValidation = function(){
+            return true;
+        };
+        //example using context object
+        vm.exitValidation = function(context){
+            return context.firstName === "Andri-jay";
+        }
+        //example using promises
+        vm.exitValidation = function(){
+            var d = $q.defer()
+            $timeout(function(){
+                return d.resolve(true);
+            }, 2000);
+            return d.promise;
+        }
+
 
         vm.jobDetail = {};
         vm.save = save;
 
         function save() {
-            jobDetailFactory
-                .create(vm.jobDetail)
-                .then(function(data) {
-                    alert(data);
-                });
+
         };
     }
 })();

@@ -1,0 +1,23 @@
+{
+  "name": "MoveMeFrontEnd",
+  "homepage": "https://github.com/hateusbecausetheyanus/MoveMe",
+  "authors": [
+    "Anton <antonmosk87@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-wizard": "^0.10.0",
+    "angular-ui": "^0.4.0",
+    "angular-ui-router": "^0.4.2"
+  }
+}

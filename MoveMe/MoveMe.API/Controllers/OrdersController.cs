@@ -134,16 +134,16 @@ namespace MoveMe.API.Controllers
         [ResponseType(typeof(Order))]
         public IHttpActionResult DeleteOrder(int id)
         {
-            Order o = db.Orders.Find(id);
-            if (o == null)
+            Order order = db.Orders.Find(id);
+            if (order == null)
             {
                 return NotFound();
             }
 
-            db.Orders.Remove(o);
+            db.Orders.Remove(order);
             db.SaveChanges();
 
-            var resultSet = db.Orders.Select(order => new
+            var resultSet = new
             {
                 order.OrderId,
                 order.CustomerId,
@@ -153,7 +153,7 @@ namespace MoveMe.API.Controllers
                 order.Cost,
                 order.Canceled,
                 order.JobDetail
-            });
+            };
             return Ok(resultSet);
         }
 

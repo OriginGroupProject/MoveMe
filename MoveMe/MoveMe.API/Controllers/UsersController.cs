@@ -35,20 +35,20 @@ namespace MoveMe.API.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
-            User u = db.Users.Find(id);
-            if (u == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            var resultSet = db.Users.Select(user => new
+            var resultSet = new
             {
                 user.UserId,
                 user.EmailAddress,
                 user.Password,
                 user.Company,
                 user.Customer
-            });
+            };
             return Ok(resultSet);
         }
 
@@ -113,23 +113,23 @@ namespace MoveMe.API.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(int id)
         {
-            User u = db.Users.Find(id);
-            if (u == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(u);
+            db.Users.Remove(user);
             db.SaveChanges();
 
-            var resultSet = db.Users.Select(user => new
+            var resultSet = new
             {
                 user.UserId,
                 user.EmailAddress,
                 user.Password,
                 user.Company,
                 user.Customer
-            });
+            };
             return Ok(resultSet);
         }
 

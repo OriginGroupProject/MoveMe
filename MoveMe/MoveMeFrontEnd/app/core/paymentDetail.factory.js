@@ -36,7 +36,7 @@
           }
           function create(paymentDetails){
             return $http
-                .post(apiUrl, 'paymentDetails')
+                .post(apiUrl + 'paymentdetails', paymentDetails)
                 .then(function(response){
                   return response.data;
                 });

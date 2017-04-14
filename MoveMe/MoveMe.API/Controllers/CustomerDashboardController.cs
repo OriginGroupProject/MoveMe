@@ -19,8 +19,8 @@ namespace MoveMe.API.Controllers
                                   .Select(order => new
                                   {
                                       title = order.Company.CompanyName,
-                                      start = order.JobDetail.MoveOut,
-                                      end = order.JobDetail.MoveIn,
+                                      start = order.JobDetail.MovingDay,
+                                      end = order.JobDetail.MovingDay,
                                       //url = "https://moveme.io/!#/orders/detail/" + order.OrderId
                                   });
 

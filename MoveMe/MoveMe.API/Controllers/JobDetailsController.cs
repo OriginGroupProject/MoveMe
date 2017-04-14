@@ -33,8 +33,7 @@ namespace MoveMe.API.Controllers
                 jobDetail.ToCity,
                 jobDetail.ToState,
                 jobDetail.ToZip,
-                jobDetail.MoveOut,
-                jobDetail.MoveIn,
+                jobDetail.MovingDay,
                 jobDetail.NumBedroom,
                 jobDetail.NumPooper,
                 jobDetail.SqFeet,
@@ -72,8 +71,7 @@ namespace MoveMe.API.Controllers
                 jobdetail.ToCity,
                 jobdetail.ToState,
                 jobdetail.ToZip,
-                jobdetail.MoveOut,
-                jobdetail.MoveIn,
+                jobdetail.MovingDay,
                 jobdetail.NumBedroom,
                 jobdetail.NumPooper,
                 jobdetail.SqFeet,
@@ -111,8 +109,7 @@ namespace MoveMe.API.Controllers
             dbJobDetail.ToCity = jobDetail.ToCity;
             dbJobDetail.ToState = jobDetail.ToState;
             dbJobDetail.ToZip = jobDetail.ToZip;
-            dbJobDetail.MoveOut = jobDetail.MoveOut;
-            dbJobDetail.MoveIn = jobDetail.MoveIn;
+            dbJobDetail.MovingDay = jobDetail.MovingDay;
             dbJobDetail.NumBedroom = jobDetail.NumBedroom;
             dbJobDetail.NumPooper = jobDetail.NumPooper;
             dbJobDetail.SqFeet = jobDetail.SqFeet;
@@ -170,16 +167,16 @@ namespace MoveMe.API.Controllers
         [ResponseType(typeof(JobDetail))]
         public IHttpActionResult DeleteJobDetail(int id)
         {
-            JobDetail j = db.JobDetails.Find(id);
-            if (j == null)
+            JobDetail jobDetail = db.JobDetails.Find(id);
+            if (jobDetail == null)
             {
                 return NotFound();
             }
 
-            db.JobDetails.Remove(j);
+            db.JobDetails.Remove(jobDetail);
             db.SaveChanges();
 
-            var resultSet = db.JobDetails.Select(jobDetail => new
+            var resultSet = new
             {
                 jobDetail.JobDetailId,
                 jobDetail.CustomerId,
@@ -191,8 +188,7 @@ namespace MoveMe.API.Controllers
                 jobDetail.ToCity,
                 jobDetail.ToState,
                 jobDetail.ToZip,
-                jobDetail.MoveOut,
-                jobDetail.MoveIn,
+                jobDetail.MovingDay,
                 jobDetail.NumBedroom,
                 jobDetail.NumPooper,
                 jobDetail.SqFeet,
@@ -201,7 +197,7 @@ namespace MoveMe.API.Controllers
                 jobDetail.NumMovers,
                 jobDetail.NumHours,
                 jobDetail.Distance
-            });
+            };
             return Ok(resultSet);
         }
 

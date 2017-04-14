@@ -5,11 +5,13 @@
         .module('app.results')
         .controller('ResultsController', ResultsController);
 
-    ResultsController.$inject = ['companiesFactory', 'jobDetailFactory'];
+    ResultsController.$inject = ['$stateparams', 'ResultsFactory'];
 
     /* @ngInject */
-    function ResultsController(companiesFactory, jobDetailFactory) {
+    function ResultsController(stateparams, ResultsFactory) {
         var vm = this;
+
+
 
         activate();
 

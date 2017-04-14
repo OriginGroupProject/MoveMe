@@ -117,33 +117,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704112329590_InitialMigration.cs" />
-    <Compile Include="Migrations\201704112329590_InitialMigration.Designer.cs">
-      <DependentUpon>201704112329590_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704122119539_Second Migration.cs" />
-    <Compile Include="Migrations\201704122119539_Second Migration.Designer.cs">
-      <DependentUpon>201704122119539_Second Migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704122132314_ThirdMigration.cs" />
-    <Compile Include="Migrations\201704122132314_ThirdMigration.Designer.cs">
-      <DependentUpon>201704122132314_ThirdMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704122333205_taketen.cs" />
-    <Compile Include="Migrations\201704122333205_taketen.Designer.cs">
-      <DependentUpon>201704122333205_taketen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704132023440_take23.cs" />
-    <Compile Include="Migrations\201704132023440_take23.Designer.cs">
-      <DependentUpon>201704132023440_take23.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704132217491_take53.cs" />
-    <Compile Include="Migrations\201704132217491_take53.Designer.cs">
-      <DependentUpon>201704132217491_take53.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704132308353_take62.cs" />
-    <Compile Include="Migrations\201704132308353_take62.Designer.cs">
-      <DependentUpon>201704132308353_take62.cs</DependentUpon>
+    <Compile Include="Migrations\201704142141240_InitialMigration.cs" />
+    <Compile Include="Migrations\201704142141240_InitialMigration.Designer.cs">
+      <DependentUpon>201704142141240_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Company.cs" />
@@ -168,26 +144,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704112329590_InitialMigration.resx">
-      <DependentUpon>201704112329590_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704122119539_Second Migration.resx">
-      <DependentUpon>201704122119539_Second Migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704122132314_ThirdMigration.resx">
-      <DependentUpon>201704122132314_ThirdMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704122333205_taketen.resx">
-      <DependentUpon>201704122333205_taketen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704132023440_take23.resx">
-      <DependentUpon>201704132023440_take23.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704132217491_take53.resx">
-      <DependentUpon>201704132217491_take53.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704132308353_take62.resx">
-      <DependentUpon>201704132308353_take62.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704142141240_InitialMigration.resx">
+      <DependentUpon>201704142141240_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

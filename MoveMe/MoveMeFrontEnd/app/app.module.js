@@ -3,6 +3,8 @@
 
     angular
         .module('app', [
+          'ui.router',
+          'mgo-angular-wizard',
           'app.companyDash',
           'app.companyForm',
           'app.customerDash',
@@ -13,5 +15,15 @@
         ])
         .value('apiUrl', 'https://localhost:57488/api/')
         .config(function($stateProvider, $urlRouterProvider){
-          $urlRouterProvider.otherwise('/landing');
+          $urlRouterProvider.otherwise('/wizard');
+
+
+        $stateProvider
+          .state('wizard', {
+            url: '/wizard',
+            controller: 'WizardController as wizCtrl',
+            templateUrl: 'app/wizard/wizard.html'
+          })
+        })
+
 })();

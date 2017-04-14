@@ -14,6 +14,7 @@ namespace MoveMe.API.Models
         public int? Rating { get; set; }
         public decimal Cost { get; set; }
         public bool Canceled { get; set; }
+        public bool Confirmed { get; set; }
         
         public int JobDetailId { get; set; }
         
