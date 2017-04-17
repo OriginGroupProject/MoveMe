@@ -24,6 +24,16 @@
             controller: 'WizardController as wizCtrl',
             templateUrl: 'app/wizard/wizard.html'
           })
+          .state('orders', {
+            url: '/orders',
+            abstract: true,
+            template: '<div ui-view></div>'
+          })
+          .state('orders.grid', {
+            url: '/grid',
+            controller: 'OrdersGridController as ordersGridCtrl',
+            templateUrl: 'app/orders/orders.grid.html'
+          })
         })
 
 })();
