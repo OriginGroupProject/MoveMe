@@ -1,0 +1,76 @@
+<head>
+</head>
+
+<body ng-controller="CompanyDashController as companyDashCtrl">
+
+    <div class='container'>
+        <div class='jumbotron'>
+            <div align='Center'>
+                <h1>Your Movers Dashboard</h1>
+            </div>
+        </div>
+        <!-- <div id="NavBar">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+                        <a class="navbar-brand" href="#">MoveMe</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li ng-click="companyDashCtrl.widget = 'revenueChart'"><a ui-sref="">Revenue Chart</a></li>
+                            <li ng-click="companyDashCtrl.widget = 'utilizationChart'"><a ui-sref="">Utilization</a></li>
+                            <li ng-click="companyDashCtrl.widget = 'upcomingJobsChart'"><a ui-sref="">Upcoming Jobs</a></li>
+                            <li ng-click="companyDashCtrl.widget = 'calendar'"><a ui-sref="">Calendar Of Events</a></li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
+            </nav>
+        </div> -->
+        <div class="row" id="buttonsAndDisplayBox">
+          <div class="col-md-1"></div>
+            <div id="buttonDiv" class="col-md-2 btn-group-vertical" role="group">
+                <button class="btn btn-default" ng-click="companyDashCtrl.widget = 'revenueChart'">revenueChart</button><br>
+                <button class="btn btn-default" ng-click="companyDashCtrl.widget = 'utilizationChart'">Utilization</button><br>
+                <button class="btn btn-default" ng-click="companyDashCtrl.widget = 'upcomingJobsChart'">Upcoming Jobs</button><br>
+                <button class="btn btn-default" ng-click="companyDashCtrl.widget = 'calendar'">Calendar Of Events</button>
+            </div>
+            <div id="displayBox" class="col-md-8" align="center">
+                <div ng-show="companyDashCtrl.widget =='revenueChart'">
+                    <div id="revenueChart">
+                        <h1>Revenue Chart</h1>
+                        <canvas id="line" class="chart chart-line" chart-data="companyDashCtrl.revenueChart.data" chart-labels="companyDashCtrl.revenueChart.labels"></canvas>
+                    </div>
+                </div>
+                <div ng-show="companyDashCtrl.widget =='utilizationChart'">
+                    <div id="utilizationChart">
+                        <h1>Utilization Chart</h1>
+                        <canvas id="line" class="chart chart-line" chart-data="companyDashCtrl.utilizationChart.data" chart-labels="companyDashCtrl.utilizationChart.labels"></canvas>
+                    </div>
+                </div>
+                <div ng-show="companyDashCtrl.widget =='upcomingJobsChart'">
+                    <div id="jobchart">
+                        <h1>Future Jobs</h1>
+                        <canvas id="line" class="chart chart-line" chart-data="companyDashCtrl.upcomingJobsChart.data" chart-labels="companyDashCtrl.upcomingJobsChart.labels"></canvas>
+                    </div>
+                </div>
+                <div ng-show="companyDashCtrl.widget =='calendar'">
+                    <div id="calendar">
+                        <h1>Calendar Of Events</h1>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</body>

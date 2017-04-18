@@ -5,35 +5,36 @@
         .module('app.companyDash')
         .controller('CompanyDashController', CompanyDashController);
 
-    CompanyDashController.$inject = [ 'MoversDashFactory', 'companiesFactory', '$stateparams'];
+    CompanyDashController.$inject = ['MoversDashFactory', 'companiesFactory', '$stateParams'];
 
     /* @ngInject */
-    function CompanyDashController(MoversDashFactory, companiesFactory, $stateparams) {
+    function CompanyDashController(MoversDashFactory, companiesFactory, $stateParams) {
         var vm = this;
-
-
+        vm.widget = "revenueChart";
         activate();
 
         function activate() {
-          var id = $stateparams.id;
-          MoversDashFactory
-            .getCalendar(id)
-            .then(function(data) {
-              vm.calendar = data;
-            })
+            var id = $stateParams.id;
+
+            MoversDashFactory
+                .getRevenueChart(1)
+                .then(function(data) {
+                    vm.revenueChart = {
+                        data: data,
+                        labels: data.map(data => data.x)
+                    };
+                });
+            MoversDashFactory
+                .getUtilizationChart(1)
+                .then(function(data) {
+                    vm.utilizationChart = {
+                        data: data,
+                        labels: data.map(data => data.x)
+                    };
+                });
+
+        }
 
 
-        MoversDashFactory
-            .getJobs(id)
-            .then(function(data){
-              vm.jobs = data;
-            })
-
-        companiesFactory
-            .getById(id)
-            .then(function(data){
-              vm.company = data;
-            })
-    }
     }
 })();

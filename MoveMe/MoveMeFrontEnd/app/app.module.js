@@ -3,6 +3,7 @@
 
     angular
         .module('app', [
+          'chart.js',
           'ui.router',
           'mgo-angular-wizard',
           'app.companyDash',
@@ -13,7 +14,7 @@
           'app.results',
           'app.wizard'
         ])
-        .value('apiUrl', 'https://localhost:57488/api/')
+        .value('apiUrl', 'http://localhost:57488/api/')
         .config(function($stateProvider, $urlRouterProvider){
           $urlRouterProvider.otherwise('/wizard');
 
@@ -24,6 +25,13 @@
             controller: 'WizardController as wizCtrl',
             templateUrl: 'app/wizard/wizard.html'
           })
+
+        $stateProvider
+          .state('companydash', {
+            url: '/companydash',
+            controller: 'CompanyDashController as companyDashCtrl',
+            templateUrl: 'app/companyDash/companyDash.html'
+          });
         })
 
 })();

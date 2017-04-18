@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -58,7 +59,41 @@ namespace MoveMe.API.Controllers
             return Ok(resultSet);
         }
 
-        protected override void Dispose(bool disposing)
+		[HttpGet, Route("api/moversdash/revenueChart/{id}")]
+		public IHttpActionResult GetRevenueChart(int id)
+		{
+			var resultSet = db.Orders
+							  .GroupBy(o => DbFunctions.TruncateTime(o.JobDetail.MovingDay))
+							  .OrderByDescending(o => o.Key)
+							  .Take(7)
+							  .Select(o => new
+							  {
+								  X = o.Key,
+								  Y = o.Sum(od => od.Cost)
+							  });
+
+			return Ok(resultSet);
+		}
+
+		[HttpGet, Route("api/moversdash/UtilizationChart/{id}")]
+		public IHttpActionResult GetUtilization(int id)
+		{
+			var company = db.Companys.Find(id);
+
+			var resultSet = db.Orders
+							  .GroupBy(o => DbFunctions.TruncateTime(o.JobDetail.MovingDay))
+							  .OrderByDescending(o => o.Key)
+							  .Take(7)
+							  .Select(o => new
+							  {
+								  X = o.Key,
+								  Y = o.Sum(od => od.JobDetail.NumMovers) / company.Employees
+							  });
+
+			return Ok(resultSet);
+		}
+
+		protected override void Dispose(bool disposing)
         {
             if(disposing)
             {

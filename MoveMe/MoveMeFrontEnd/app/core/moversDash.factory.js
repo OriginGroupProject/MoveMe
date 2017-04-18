@@ -11,7 +11,9 @@
     function MoversDashFactory($http, apiUrl) {
         var service = {
             getCalendar : getCalendar,
-            getJobs : getJobs
+            getJobs : getJobs,
+            getRevenueChart : getRevenueChart,
+            getUtilizationChart : getUtilizationChart
         };
 
         return service;
@@ -32,5 +34,19 @@
               });
         }
 
+        function getRevenueChart(id) {
+          return $http
+            .get(apiUrl + 'moversDash/revenueChart/' + id)
+            .then(function(response) {
+              return response.data;
+            });
+        }
+        function getUtilizationChart (id) {
+          return $http
+            .get(apiUrl + 'moversDash/utilizationChart/' + id)
+            .then(function(response){
+              return response.data;
+            });
+        }
     }
 })();
