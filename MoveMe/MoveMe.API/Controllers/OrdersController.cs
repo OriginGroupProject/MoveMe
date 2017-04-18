@@ -1,21 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MoveMe.API.Data;
+using MoveMe.API.Models;
+using System;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using MoveMe.API.Data;
-using MoveMe.API.Models;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
 
 namespace MoveMe.API.Controllers
 {
     public class OrdersController : ApiController
     {
         private MoveMeDataContext db = new MoveMeDataContext();
+        private string Username = ConfigurationManager.AppSettings["Twilio:Username"];
+        private string Password = ConfigurationManager.AppSettings["Twilio:Password"];
 
         // GET: api/Orders
         public IHttpActionResult GetOrders()
@@ -104,7 +107,7 @@ namespace MoveMe.API.Controllers
 
         // POST: api/Orders
         [ResponseType(typeof(Order))]
-        public IHttpActionResult PostOrder( Order order)
+        public IHttpActionResult PostOrder(Order order)
         {
             if (!ModelState.IsValid)
             {
@@ -116,6 +119,25 @@ namespace MoveMe.API.Controllers
 
             db.Orders.Add(order);
             db.SaveChanges();
+
+            db.Dispose();
+
+            db = new MoveMeDataContext();
+
+            order = db.Orders.Find(order.OrderId);
+
+            TwilioClient.Init(Username, Password);
+
+            var messageToMover = MessageResource.Create(
+                to: new Twilio.Types.PhoneNumber(order.Company.Telephone),
+                from: new Twilio.Types.PhoneNumber("+16192028377"),
+                body: $"New job request" + Environment.NewLine +
+                      $"Job Date: {order?.JobDetail?.MovingDay}" + Environment.NewLine +
+                      $"Amount: ${order?.Cost}" + Environment.NewLine + Environment.NewLine +
+                      $"Reply CONFIRM {order?.OrderId} to accept job" + Environment.NewLine +
+                      $"Reply CANCEL {order?.OrderId} to cancel job"
+            );
+
 
             return CreatedAtRoute("DefaultApi", new { id = order.OrderId }, new
             {
