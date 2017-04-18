@@ -1,6 +1,6 @@
 {
   "name": "MoveMeFrontEnd",
-  "homepage": "https://github.com/hateusbecausetheyanus/MoveMe",
+  "homepage": "https://github.com/OriginGroupProject/MoveMe",
   "authors": [
     "Anton <antonmosk87@gmail.com>"
   ],
@@ -16,16 +16,16 @@
     "tests"
   ],
   "overrides": {
-     "font-awesome": {
-       "main": "css/font-awesome.css"
-     },
-     "bootstrap": {
-       "main": [
-         "dist/css/bootstrap.css",
-         "dist/js/bootstrap.js"
-       ]
-     }
-   },
+    "font-awesome": {
+      "main": "css/font-awesome.css"
+    },
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  },
   "dependencies": {
     "angular-wizard": "^0.10.0",
     "angular-ui": "^0.4.0",
