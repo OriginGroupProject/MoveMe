@@ -5,18 +5,27 @@
         .module('app.customerDash')
         .controller('CustomerDashController', CustomerDashController);
 
-    CustomerDashController.$inject = [ 'CustomerDashFactory', 'companiesFactory', '$stateparams'];
+    CustomerDashController.$inject = [ 'CustomerDashFactory','ordersFactory', '$state', 'apiUrl', '$stateParams'];
 
     /* @ngInject */
-    function CustomerDashController(CustomerDashFactory, $stateparams) {
+    function CustomerDashController(CustomerDashFactory, $state, apiUrl, $stateParams ) {
         var vm = this;
-
-
+        vm.widget = "dashboard";
         activate();
 
 
         function activate() {
-          var id = $stateparams.id;
+            var id = $stateParams.id;
+
+          function getById(id){
+            return $http
+                .get(apiUrl+'customerdash/calendar'+ id)
+                .then(function(response){
+                  return response.data;
+
+                });
+              }
+        /*  var id = 1;
           CustomerDashFactory
             .getCalendar(id)
             .then(function(data) {
@@ -35,6 +44,8 @@
             .then(function(data){
               vm.company = data;
             })
+          */
     }
+
     }
 })();

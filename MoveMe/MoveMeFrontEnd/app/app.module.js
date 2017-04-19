@@ -14,13 +14,21 @@
           'app.wizard'
         ])
         .value('apiUrl', 'https://localhost:57488/api/')
-        .config(function($stateProvider, $urlRouterProvider){
-          $urlRouterProvider.otherwise('/');
+        .config(['$stateProvider', '$urlRouterProvider',
+          function($stateProvider, $urlRouterProvider){
+          $urlRouterProvider.otherwise('/home');
 
           $stateProvider
             .state('home', {
               url: '/home',
             })
+        //customdash state$stateProvider
+        $stateProvider
+          .state('customerDash', {
+            url: '/customerdash',
+            controller: 'CustomerDashController as custDashCtrl',
+            templateUrl: 'app/customerDash/customerDash.html'
+          })
 
         $stateProvider
           .state('wizard', {
@@ -40,6 +48,6 @@
             controller: 'OrdersGridController as ordersGridCtrl',
             templateUrl: 'app/orders/orders.grid.html'
           })
-        })
+        }])
 
 })();

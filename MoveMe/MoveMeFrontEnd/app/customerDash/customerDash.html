@@ -1,23 +1,46 @@
 <body>
-<div ng-app="app">
-
-      <h1>Customer DASH-SH-SH-SH</h1>
-      <div id="buttonDiv">
-          <button class="btn btn-default" ng-click="vm.widget = 'dashboard'">Dashboard</button>
-          <button class="btn btn-default" ng-click="vm.widget = 'pastMove'">Past Moves</button>
-          <button class="btn btn-default"><a ui-sref="wizard"></a>New Move</button>
-      </div>
-      <div id="displayBox" class="row">
-          <div class="col-md-4">
-              <div>
-                  <p>Past Moves</p>
+<div ng-controller="CustomerDashController as custDashCtrl">
+  <div class='container'>
+          <div class='jumbotron'>
+              <div align='Center'>
+                  <h1>Customer DASH</h1>
               </div>
-          </div>
-          <div id="displayBox" class="row">
-              <div class="col-md-4">
-              </div>
-            </div>
           </div>
         </div>
+      <div class="row" id="buttonsAndDisplayBox">
+  <div class="col-md-1"></div>
+    <div id="buttonDiv" class="col-md-2 btn-group-vertical" role="group">
+
+          <button class="btn btn-default" ng-click="custDashCtrl.widget = 'dashboard'">Dashboard</button>
+          <button class="btn btn-default" ng-click="custDashCtrl.widget = 'pastmove'">Past Moves</button>
+          <button class="btn btn-default" ui-sref="wizard">New Move</button>
+        </div>
       </div>
+
+      <div id="displayBox" class="col-md-8" align="center">
+                <div ng-show="custDashCtrl.widget =='dashboard'">
+                    <div id="dashboard">
+                      <h1>Up Coming Move!</h1>
+                      <div ng-repeat="move in custDashCtrl.move">
+
+                        <h3>{{move.title}}</h3>
+                        <h3>{{move.start}}</h3>
+                        <h3>{{move.end}}</h3>
+                      </div>
+                    </div>
+                </div>
+                <div ng-show="custDashCtrl.widget =='pastmove'">
+                    <div id="pastmove">
+                        <h1>Past Moves</h1>
+                        <div ng-repeat="move in custDashCtrl.move">
+
+                          <h3>{{move.title}}</h3>
+                          <h3>{{move.start}}</h3>
+                          <h3>{{move.end}}</h3>
+                        </div>
+
+                    </div>
+                </div>
+              </div>
+            </div>
 </body>
