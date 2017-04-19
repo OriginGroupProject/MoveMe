@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity.Spatial;
-using System.Linq;
-using System.Web;
 
 namespace MoveMe.API.Models
 {
     public class Company
     {
+        public Company()
+        {
+            Orders = new Collection<Order>();
+        }
         public int CompanyId { get; set; }
         public string CompanyName { get; set; }
         public string Telephone { get; set; }

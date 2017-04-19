@@ -7,6 +7,10 @@ namespace MoveMe.API.Models
 {
     public class User
     {
+        public User()
+        {
+
+        }
         public int UserId { get; set; }
         public string EmailAddress { get; set; }
         public string Password { get; set; }
