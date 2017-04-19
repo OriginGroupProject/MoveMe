@@ -7,94 +7,56 @@
     <link rel="stylesheet" href="bower_components/angular-wizard/dist/angular-wizard.min.css" />
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
-    <link href="styles.css" media="all" rel="stylesheet" type="text/css" />
     <!-- endbower -->
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="app/styles.css">
+    <!-- endinject -->
 </head>
 
 
 <body>
     <div ui-view></div>
-    <div class="btn-group">
-        <button id="logo" class="btn btn-primary btn-lg" type="button" ng-click="">
-        Login
-        </button>
-    </div>
-    <header>
-        <img id="logo" src="/images/MoveMe-logo.png" alt="" img-size: 45%;>
-        <img src="/images/header-image.jpg" alt="" width="100%" height="cover">
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-wizard/dist/angular-wizard.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script src="bower_components/chart.js/dist/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <!-- endbower -->
 
-    </header>
-    <section>
-        <section class="below-header">
-            <center>
-                <h2>GET YOUR FREE ESTIMATE</h2>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Current Zip Code">
-                    <input type="text" class="form-control" placeholder="New Zip Code">
-                    <span class="input-group-btn">
-          <button class="btn btn-primary" type="submit">Go!</button></center>
-
-          <center><h1>WHEN YOU WANT TO MOVE, <p>ITS FUN, FAST AND EASY WITH US.</h1>
-        <h3>We're a professional local moving service created to mhelp you <p>move, efficiantly, and with ease.</center></h3>
-          <div class="row" style="margin-bottom: 12px;"></div>
-        </section>
-        <section class="parallax">
-               <div class="overlay"></div>
-                <div class="container">
-                    <div class="desc" style="float: left">
-                        <h2>DISCOVER WHY WE'RE EVERYONE'S FAVORITE LOCAL MOVERS!</h2>
-                        <p>No matter what size your move might be, you'll have a ton on your mind that day, so it's our goal to be more than a mover. We want to be your partner. Partners do a lot more than move around boxes. We help you plan the day ahead of time, locate storage facilities, find enough of the right size boxes and even bring you coffee.
-        </p>
-
-                    </div>
-                </div>
-            </section>
-            <section class="footer">
-              <div class="overlay"></div>
-               <div class="container">
-                   <div class="desc" style="">
-                       <center><h2>ARE YOU A MOVING COMPANY <P>WHO WANTS TO SIGN UP?!</h2>
-                       <p>Click below to sign up for an account.  Yep its that easy!</center>
-        </p>
-            </section>
-        <!-- bower:js -->
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/angular-wizard/dist/angular-wizard.min.js"></script>
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="bower_components/moment/moment.js"></script>
-        <script src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
-        <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
-        <script src="bower_components/chart.js/dist/Chart.js"></script>
-        <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
-
-        <!-- endbower -->
-
-        <!-- inject:js -->
-        <script src="app/app.module.js"></script>
-        <script src="app/companyDash/companyDash.module.js"></script>
-        <script src="app/companyForm/companyForm.module.js"></script>
-        <script src="app/customerDash/customerDash.module.js"></script>
-        <script src="app/landing/landing.module.js"></script>
-        <script src="app/orderDetail/orderDetail.module.js"></script>
-        <script src="app/results/results.module.js"></script>
-        <script src="app/wizard/wizard.module.js"></script>
-        <script src="app/companyDash/companyDash.controller.js"></script>
-        <script src="app/core/companies.factory.js"></script>
-        <script src="app/core/customerDash.factory.js"></script>
-        <script src="app/core/customers.factory.js"></script>
-        <script src="app/core/jobDetail.factory.js"></script>
-        <script src="app/core/moversDash.factory.js"></script>
-        <script src="app/core/orders.factory.js"></script>
-        <script src="app/core/paymentDetail.factory.js"></script>
-        <script src="app/core/results.factory.js"></script>
-        <script src="app/core/user.factory.js"></script>
-        <script src="app/landing/landing.controller.js"></script>
-        <script src="app/orderDetail/orderDetail.controller.js"></script>
-        <script src="app/results/results.controller.js"></script>
-        <script src="app/wizard/wizard.controller.js"></script>
-        <script src="app/companyDash/jobsmodule/orders.grid.controller.js"></script>
-        <!-- endinject -->
-    </body>
+    <!-- inject:js -->
+    <script src="app/app.module.js"></script>
+    <script src="app/companyDash/companyDash.module.js"></script>
+    <script src="app/companyDash/orders.module.js"></script>
+    <script src="app/companyForm/companyForm.module.js"></script>
+    <script src="app/customerDash/customerDash.module.js"></script>
+    <script src="app/landing/landing.module.js"></script>
+    <script src="app/orderDetail/orderDetail.module.js"></script>
+    <script src="app/results/results.module.js"></script>
+    <script src="app/wizard/wizard.module.js"></script>
+    <script src="app/companyDash/companyDash.controller.js"></script>
+    <script src="app/companyDash/orders.grid.controller.js"></script>
+    <script src="app/core/companies.factory.js"></script>
+    <script src="app/core/customerDash.factory.js"></script>
+    <script src="app/core/customers.factory.js"></script>
+    <script src="app/core/jobDetail.factory.js"></script>
+    <script src="app/core/moversDash.factory.js"></script>
+    <script src="app/core/orderDetail.factory.js"></script>
+    <script src="app/core/orders.factory.js"></script>
+    <script src="app/core/paymentDetail.factory.js"></script>
+    <script src="app/core/results.factory.js"></script>
+    <script src="app/core/user.factory.js"></script>
+    <script src="app/landing/landing.controller.js"></script>
+    <script src="app/orderDetail/orderDetail.controller.js"></script>
+    <script src="app/results/results.controller.js"></script>
+    <script src="app/wizard/wizard.controller.js"></script>
+    <!-- endinject -->
+</body>
 
 </html>

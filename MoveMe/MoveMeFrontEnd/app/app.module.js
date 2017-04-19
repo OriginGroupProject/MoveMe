@@ -9,13 +9,19 @@
           'app.companyForm',
           'app.customerDash',
           'app.landing',
+          'app.orders',
           'app.orderDetail',
           'app.results',
           'app.wizard'
         ])
         .value('apiUrl', 'https://localhost:57488/api/')
         .config(function($stateProvider, $urlRouterProvider){
-          $urlRouterProvider.otherwise('/wizard');
+          $urlRouterProvider.otherwise('/home');
+          $stateProvider
+            .state('home', {
+              url: '/home',
+              templateUrl: 'app/landing/landing.html'
+            })
 
 
         $stateProvider
@@ -29,10 +35,10 @@
             abstract: true,
             template: '<div ui-view></div>'
           })
-          .state('orders.grid', {
-            url: '/grid',
-            controller: 'OrdersGridController as ordersGridCtrl',
-            templateUrl: 'app/orders/orders.grid.html'
+          .state('order', {
+            url: '/detail',
+            controller: 'OrdersDetailController as ordersDetailCtrl',
+            templateUrl: 'app/companyDash/orders.detail.html'
           })
         })
 

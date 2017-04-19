@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div ng-controller = "OrdersGridController as ordersGridCtrl">
 <div class="panel panel-primary">
     <div class="panel-heading">
         <strong>Confirmation Page</strong>
@@ -8,80 +8,80 @@
             <div class="col-xs-6">
                 <div class="form-group">
                     <label for="firstName">First Name</label>
-                    <input id="firstName" type="text" class="form-control" ng-model="orderDetailController.jobDetail.CustomerId.firstName">
+                    <input id="firstName" type="text" class="form-control" ng-model="ordersGridCtrl.jobDetail.CustomerId.firstName">
                 </div>
             </div>
             <div class="col-xs-6">
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
-                    <input id="lastName" type="text" class="form-control" ng-model="orderDetailController.jobDetail.CustomerId.lastName">
+                    <input id="lastName" type="text" class="form-control" ng-model="ordersGridCtrl.jobDetail.CustomerId.lastName">
                 </div>
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="emailAddress">Current Street Address</label>
-                <input id="emailAddress" type="text" class="form-control" ng-model="orderDetailController.jobDetail.fromStreetAddress">
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersGridCtrl.jobDetail.fromStreetAddress">
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="emailAddress">Current City</label>
-                <input id="emailAddress" type="text" class="form-control" ng-model="orderDetailController.jobDetail.fromcity">
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersGridCtrl.jobDetail.fromcity">
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="emailAddress">Current State</label>
-                <input id="emailAddress" type="text" class="form-control" ng-model="orderDetailController.jobDetail.fromState">
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersGridCtrl.jobDetail.fromState">
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="emailAddress">Current Zip Code</label>
-                <input id="emailAddress" type="text" class="form-control" ng-model="orderDetailController.jobDetail.fromZip">
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersGridCtrl.jobDetail.fromZip">
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="emailAddress">Current Square Footage (Approx)</label>
-                <input id="emailAddress" type="text" class="form-control" ng-model="orderDetailController.jobDetail.sqFeet">
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersGridCtrl.jobDetail.sqFeet">
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="emailAddress">Moving to Street Address</label>
-                <input id="emailAddress" type="text" class="form-control" ng-model="orderDetailController.jobDetail.ToStreetAddress">
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersGridCtrl.jobDetail.ToStreetAddress">
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="emailAddress">Moving to City</label>
-                <input id="emailAddress" type="text" class="form-control" ng-model="orderDetailController.jobDetail.toCity">
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersGridCtrl.jobDetail.toCity">
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="emailAddress">Moving to State</label>
-                <input id="emailAddress" type="text" class="form-control" ng-model="orderDetailController.jobDetail.toState">
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersGridCtrl.jobDetail.toState">
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="emailAddress">Moving to Zip Code</label>
-                <input id="emailAddress" type="text" class="form-control" ng-model="orderDetailController.jobDetail.toZip">
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersGridCtrl.jobDetail.toZip">
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="emailAddress">Moving Date</label>
-                <input id="emailAddress" type="text" class="form-control" ng-model="orderDetailController.jobDetail.movingDay">
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersGridCtrl.jobDetail.movingDay">
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="emailAddress">Total Distance of the Move</label>
-                <input id="emailAddress" type="text" class="form-control" ng-model="orderDetailController.jobDetail.distance">
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersGridCtrl.jobDetail.distance">
             </div>
         </div>
         <div class="col-xs-6">
@@ -95,4 +95,5 @@
               Save <i class="glyphicon glyphicon-save"></i>
             </button>
         </div>
+      </div>
     </div>
