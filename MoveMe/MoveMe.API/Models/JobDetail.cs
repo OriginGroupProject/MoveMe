@@ -9,6 +9,10 @@ namespace MoveMe.API.Models
 {
     public class JobDetail
     {
+        public JobDetail()
+        {
+
+        }
         public int JobDetailId { get; set; }
         public int CustomerId { get; set; }
         public string FromStreetAddress { get; set; }
