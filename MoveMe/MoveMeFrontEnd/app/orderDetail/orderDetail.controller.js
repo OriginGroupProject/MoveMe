@@ -2,19 +2,32 @@
     'use strict';
 
     angular
-        .module('app.orderDetail')
-        .controller('orderDetailController', orderDetailController);
+        .module('app.ordersDetail')
+        .controller('OrdersDetailController', OrdersDetailController);
 
-    orderDetailController.$inject = ['userFactory', 'ordersFactory', 'paymentDetailFactory'];
+    OrdersDetailController.$inject = ['jobDetailFactory', '$stateParams'];
 
     /* @ngInject */
-    function orderDetailController(userFactory, ordersFactory, paymentDetailFactory) {
+    function OrdersDetailController(jobDetailFactory, $stateParams) {
         var vm = this;
 
         activate();
 
-        function activate() {
+        function activate(){
+          jobDetailFactory
+          .getById($stateParams.id)
+          .then(function(jobDetails){
+            vm.jobDetails = jobDetails;
+            console.log(vm.jobDetails);
+          });
+        }
 
+        function save(){
+          jobDetailFactory
+          .update(vm.jobDetails.jobDetailsId, vm.jobDetails)
+          .then(
+            console.log("Mr.Anderson... it seems you've changed " + vm.jobDetails.firstName)
+          )
         }
     }
 })();
