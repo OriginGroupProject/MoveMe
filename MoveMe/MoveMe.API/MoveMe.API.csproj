@@ -158,8 +158,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Secrets.config" />
     <None Include="Properties\PublishProfiles\cw-move-me-api - Web Deploy.pubxml" />
+    <Content Include="Secrets.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
