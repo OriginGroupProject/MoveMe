@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 
@@ -7,6 +8,10 @@ namespace MoveMe.API.Models
 {
     public class PaymentDetail
     {
+        public PaymentDetail()
+        {
+            Orders = new Collection<Order>();
+        }
         public int PaymentDetailId { get; set; }
         public int CustomerId { get; set; }
         public string CCNumber { get; set; }
