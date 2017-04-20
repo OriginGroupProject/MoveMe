@@ -4,8 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using MoveMe.API.Models;
-using System.Data.Entity.SqlServer;
 using MoveMe.API.Migrations;
+using System.Data.Entity.SqlServer;
 
 namespace MoveMe.API.Data
 {
@@ -15,6 +15,7 @@ namespace MoveMe.API.Data
         {
             SqlProviderServices.SqlServerTypesAssemblyName =
                 "Microsoft.SqlServer.Types, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91";
+
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<MoveMeDataContext, Configuration>()
             );

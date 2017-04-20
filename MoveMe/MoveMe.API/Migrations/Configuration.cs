@@ -1,5 +1,6 @@
 namespace MoveMe.API.Migrations
 {
+    using MoveMe.API.Utility;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -8,6 +9,10 @@ namespace MoveMe.API.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<MoveMe.API.Data.MoveMeDataContext>
     {
+        private readonly int _numberOfCustomers = 5;
+        private readonly int _numberOfCompanies = 5;
+        private readonly string _twilioTestNumber = "9092247557";
+
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
@@ -15,88 +20,187 @@ namespace MoveMe.API.Migrations
 
         protected override void Seed(MoveMe.API.Data.MoveMeDataContext context)
         {
-            if(context.Companys.Count() == 0)
-            {
-                var geocoderService = new Geocoder.GeocodeService();
-                var tmaatLocation = geocoderService.GeocodeLocation("9245 Farnham St, San Diego, CA 92123");
 
-                // 1. Setup a fake company
-                var company = new Models.Company
+            string[] addresses = new string[]
+           {
+                "101 W Broadway, San Diego, CA, 92101",
+                "13030 Salmon River Road, San Diego, CA, 92129",
+                "1930 Georgia Court, San Diego, CA, 92104",
+                "3872 Jewell Street, San Diego, CA, 92109"
+           };
+
+
+            // generate companies
+            if (context.Companys.Count() == 0)
+            {
+
+                context.Companys.Add(new Models.Company
                 {
-                    CompanyName = "Two Men and a Truck",
-                    Telephone = "+19092247557",
-                    HourlyRate = 50M,
-                    Radius = 10,
-                    Location = DbGeography.FromText($"POINT({tmaatLocation.Longitude} {tmaatLocation.Latitude})"),
-                    StreetAddress = "9245 Farnham St",
+                    CompanyName = "Finch Moving San Diego",
+                    StreetAddress = "1080 Park Blvd",
                     City = "San Diego",
                     State = "CA",
-                    Zip = "92123",
-                    Employees = 2
-                };
-
-                context.Companys.Add(company);
-                context.SaveChanges();
-
-                // 2. Setup a fake customer
-                var customer = new Models.Customer
-                {
-                    FirstName = "Cameron",
-                    LastName = "Wilby",
-                    Telephone = "+19092247557",
+                    Zip = "92101",
+                    Employees = 5,
+                    HourlyRate = 100,
+                    Location = LocationConverter.GeocodeAddress("1080 Park Blvd, San Diego CA 92101"),
+                    Radius = 25,
+                    Telephone = _twilioTestNumber,
                     User = new Models.User
                     {
-                        EmailAddress = "cameron@wilby.com",
+                        EmailAddress = "owner@finchmoving.com",
                         Password = "password123"
                     }
-                };
-
-                context.Customers.Add(customer);
-                context.SaveChanges();
-
-                var fromLocation = geocoderService.GeocodeLocation("3590 Central Ave #101, Riverside, CA 92506");
-                var toLocation = geocoderService.GeocodeLocation("101 W Broadway, San Diego CA 92101");
-
-                // 3. Setup some stuff ready for an order
-                var jobDetail = new Models.JobDetail
+                });
+                context.Companys.Add(new Models.Company
                 {
-                    Customer = customer,
-                    Distance = 100,
-                    Elevator = true,
-                    FromStreetAddress = "3590 Central Ave #101",
-                    FromState = "CA",
-                    FromCity = "Riverside",
-                    FromZip = "92506",
-                    FromLocation = DbGeography.FromText($"POINT({fromLocation.Longitude} {fromLocation.Latitude})"),
-                    ToStreetAddress = "101 W Broadway",
-                    ToCity = "San Diego",
-                    ToState = "CA",
-                    ToZip = "92109",
-                    ToLocation = DbGeography.FromText($"POINT({toLocation.Longitude} {toLocation.Latitude})"),
-                    MovingDay = DateTime.Now.AddDays(5),
-                    NumBedroom = 2,
-                    NumHours = 8,
-                    NumMovers = 2,
-                    NumPooper = 1,
-                    SqFeet = 800,
-                    Stairs = 1
-                };
-                context.JobDetails.Add(jobDetail);
-
-                var paymentDetail = new Models.PaymentDetail
-                {
-                    CCNumber = "4242424242424242",
-                    CCV = "828",
+                    CompanyName = "San Diego Expert Movers",
+                    StreetAddress = "2004 C St",
                     City = "San Diego",
                     State = "CA",
-                    Zip = "92109",
-                    ExpDate = DateTime.Now.AddYears(2).ToString("MM/YYYY"),
-                    StreetAddress = "101 W Broadway",
-                    Customer = customer
-                };
-                context.PaymentDetails.Add(paymentDetail);
+                    Zip = "92102",
+                    Employees = 15,
+                    HourlyRate = 80,
+                    Location = LocationConverter.GeocodeAddress("2004 C St, San Diego CA 92102"),
+                    Radius = 25,
+                    Telephone = _twilioTestNumber,
+                    User = new Models.User
+                    {
+                        EmailAddress = "owner@sdexpertmovers.com",
+                        Password = "password123"
+                    }
+                });
+                context.Companys.Add(new Models.Company
+                {
+                    CompanyName = "San Diego Moving LLC",
+                    StreetAddress = "301 W G St",
+                    City = "San Diego",
+                    State = "CA",
+                    Zip = "92101",
+                    Employees = 15,
+                    HourlyRate = 80,
+                    Location = LocationConverter.GeocodeAddress("301 W G St, San Diego CA 92101"),
+                    Radius = 10,
+                    Telephone = _twilioTestNumber,
+                    User = new Models.User
+                    {
+                        EmailAddress = "owner@sdmovingllc.com",
+                        Password = "password123"
+                    }
+                });
+                context.Companys.Add(new Models.Company
+                {
+                    CompanyName = "California Movers. Local & Long Distance Moving Company",
+                    StreetAddress = "1399 Ninth Ave #303",
+                    City = "San Diego",
+                    State = "CA",
+                    Zip = "92101",
+                    Employees = 10,
+                    HourlyRate = 50,
+                    Location = LocationConverter.GeocodeAddress("1399 Ninth Ave #303, San Diego CA 92101"),
+                    Radius = 50,
+                    Telephone = _twilioTestNumber,
+                    User = new Models.User
+                    {
+                        EmailAddress = "owner@calimovers.com",
+                        Password = "password123"
+                    }
+                });
+                context.Companys.Add(new Models.Company
+                {
+                    CompanyName = "Starving Students Movers, Inc",
+                    StreetAddress = "2734 Main St",
+                    City = "San Diego",
+                    State = "CA",
+                    Zip = "92113",
+                    Employees = 5,
+                    HourlyRate = 25,
+                    Location = LocationConverter.GeocodeAddress("2734 Main St, San Diego CA 92113"),
+                    Radius = 50,
+                    Telephone = _twilioTestNumber,
+                    User = new Models.User
+                    {
+                        EmailAddress = "owner@starvingstudents.com",
+                        Password = "password123"
+                    }
+                });
+
                 context.SaveChanges();
             }
+
+            // generate customers
+            if (context.Customers.Count() == 0)
+            {
+                for (int i = 0; i < _numberOfCustomers; i++)
+                {
+                    var customer = new Models.Customer
+                    {
+                        FirstName = Faker.NameFaker.FirstName(),
+                        LastName = Faker.NameFaker.LastName(),
+                        Telephone = _twilioTestNumber,
+                        User = new Models.User
+                        {
+                            EmailAddress = Faker.InternetFaker.Email(),
+                            Password = "password123"
+                        }
+                    };
+
+                    var randomAddress = addresses[Faker.NumberFaker.Number(0, addresses.Length)].Split(' ');
+
+                    customer.PaymentDetails.Add(new Models.PaymentDetail
+                    {
+                        CCNumber = "4242424242424242",
+                        CCV = "123",
+                        ExpDate = "10/12/2020",
+                        StreetAddress = randomAddress[0],
+                        City = randomAddress[1],
+                        State = randomAddress[2],
+                        Zip = randomAddress[3]
+                    });
+
+                    if(Faker.BooleanFaker.Boolean())
+                    {
+                        customer.Orders.Add(new Models.Order
+                        {
+                            Canceled = false,
+                            CompanyId = Faker.NumberFaker.Number(1, context.Companys.Count()),
+                            Completed = false,
+                            Confirmed = false,
+                            Cost = 500,
+                            PaymentDetail = customer.PaymentDetails.First(),
+                            JobDetail = new Models.JobDetail
+                            {
+                                Customer = customer,
+                                Distance = 50,
+                                Elevator = true,
+                                MovingDay = DateTime.Now.AddDays(Faker.NumberFaker.Number(3, 14)),
+                                NumBedroom = Faker.NumberFaker.Number(1, 3),
+                                NumPooper = Faker.NumberFaker.Number(1, 2),
+                                NumHours = Faker.NumberFaker.Number(2, 4),
+                                SqFeet = Faker.NumberFaker.Number(500, 1000),
+                                Stairs = Faker.NumberFaker.Number(0, 2),
+                                NumMovers = Faker.NumberFaker.Number(2, 4),
+                                FromStreetAddress = "101 W Broadway",
+                                FromCity = "San Diego",
+                                FromState = "CA",
+                                FromZip = "92101",
+                                FromLocation = LocationConverter.GeocodeAddress("101 W Broadway, San Diego CA 92101"),
+                                ToStreetAddress = "3872 Jewell Street",
+                                ToCity = "San Diego",
+                                ToZip = "CA",
+                                ToState = "CA",
+                                ToLocation = LocationConverter.GeocodeAddress("3872 Jewell Street, San Diego CA 92109")
+                            }
+                        });
+                    }
+
+                    
+
+                    context.Customers.Add(customer);
+                }
+            }
+
+
         }
     }
 }
