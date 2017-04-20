@@ -10,7 +10,8 @@
     /* @ngInject */
     function CustomerDashFactory($http, apiUrl) {
         var service = {
-            getCalendar : getCalendar
+            getCalendar : getCalendar,
+            getUpComing : getUpComing
         };
 
         return service;
@@ -20,7 +21,15 @@
               .get(apiUrl + 'customerDash/calendar/'+ id)
               .then(function(response){
                 return response.data;
-              });
+              })};
+
+          function getUpComing(id) {
+            return $http
+                .get(apiUrl + 'customerDash/current/'+ id)
+                .then(function(response){
+                  return response.data;
+                });
         }
-    }
+
+}
 })();
