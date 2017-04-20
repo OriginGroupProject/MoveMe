@@ -4,6 +4,7 @@ namespace MoveMe.API.Migrations
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Data.Entity.Spatial;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MoveMe.API.Data.MoveMeDataContext>
@@ -19,6 +20,7 @@ namespace MoveMe.API.Migrations
 
         protected override void Seed(MoveMe.API.Data.MoveMeDataContext context)
         {
+
             string[] addresses = new string[]
            {
                 "101 W Broadway, San Diego, CA, 92101",
@@ -197,6 +199,7 @@ namespace MoveMe.API.Migrations
                     context.Customers.Add(customer);
                 }
             }
+
 
         }
     }
