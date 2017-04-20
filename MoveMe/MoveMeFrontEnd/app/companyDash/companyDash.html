@@ -37,12 +37,13 @@
             </nav>
         </div> -->
         <div class="row" id="buttonsAndDisplayBox">
-          <div class="col-md-1"></div>
+            <div class="col-md-1"></div>
             <div id="buttonDiv" class="col-md-2 btn-group-vertical" role="group">
                 <button class="btn btn-default" ng-click="companyDashCtrl.widget = 'revenueChart'">revenueChart</button><br>
                 <button class="btn btn-default" ng-click="companyDashCtrl.widget = 'utilizationChart'">Utilization</button><br>
-                <button class="btn btn-default" ng-click="companyDashCtrl.widget = 'upcomingJobsChart'">Upcoming Jobs</button><br>
-                <button class="btn btn-default" ng-click="companyDashCtrl.widget = 'calendar'">Calendar Of Events</button>
+                <button class="btn btn-default" ng-click="companyDashCtrl.widget = 'calendar'">Calendar Of Events</button><br>
+                <button class="btn btn-default" ui-sref="orders.grid">View Orders</button><br>
+                <button class="btn btn-default" ui-sref="customers.grid">View Customers</button>
             </div>
             <div id="displayBox" class="col-md-8" align="center">
                 <div ng-show="companyDashCtrl.widget =='revenueChart'">
@@ -65,7 +66,11 @@
                 </div>
                 <div ng-show="companyDashCtrl.widget =='calendar'">
                     <div id="calendar">
-                        <h1>Calendar Of Events</h1>
+                          <h1>Calendar</h1>
+                          <div id="calendar"
+                               class="calendar"
+                               ui-calendar="companyDashCtrl.calendar.options"
+                               ng-model="companyDashCtrl.calendar.eventSources"></div>
 
                     </div>
                 </div>

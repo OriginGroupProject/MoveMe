@@ -64,7 +64,7 @@ namespace MoveMe.API.Controllers
 		{
 			var resultSet = db.Orders
 							  .GroupBy(o => DbFunctions.TruncateTime(o.JobDetail.MovingDay))
-							  .OrderByDescending(o => o.Key)
+							  .OrderBy(o => o.Key)
 							  .Take(7)
 							  .Select(o => new
 							  {
@@ -82,7 +82,7 @@ namespace MoveMe.API.Controllers
 
 			var resultSet = db.Orders
 							  .GroupBy(o => DbFunctions.TruncateTime(o.JobDetail.MovingDay))
-							  .OrderByDescending(o => o.Key)
+							  .OrderBy(o => o.Key)
 							  .Take(7)
 							  .Select(o => new
 							  {

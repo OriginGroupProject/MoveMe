@@ -5,6 +5,7 @@
         .module('app', [
             'chart.js',
             'ui.router',
+            'ui.calendar',
             'mgo-angular-wizard',
             'app.companyDash',
             'app.companyForm',

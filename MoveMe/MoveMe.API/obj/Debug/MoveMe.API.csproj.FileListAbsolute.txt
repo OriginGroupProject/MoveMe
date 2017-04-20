@@ -104,3 +104,5 @@ C:\Users\Stephenprosso\Documents\Dev\MoveMe\MoveMe\MoveMe.API\obj\Debug\MoveMe.A
 C:\Users\Stephenprosso\Documents\Dev\MoveMe\MoveMe\MoveMe.API\obj\Debug\MoveMe.API.csproj.GenerateResource.Cache
 C:\Users\Stephenprosso\Documents\Dev\MoveMe\MoveMe\MoveMe.API\obj\Debug\MoveMe.API.dll
 C:\Users\Stephenprosso\Documents\Dev\MoveMe\MoveMe\MoveMe.API\obj\Debug\MoveMe.API.pdb
+C:\Users\Stephenprosso\Documents\Dev\MoveMe\MoveMe\MoveMe.API\bin\Faker.dll
+C:\Users\Stephenprosso\Documents\Dev\MoveMe\MoveMe\MoveMe.API\obj\Debug\MoveMe.API.Migrations.take2.resources
