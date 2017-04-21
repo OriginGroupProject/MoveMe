@@ -3,12 +3,12 @@
 
     angular
         .module('app')
-        .factory('ordersFactory', ordersFactory);
+        .factory('orderDetailFactory', orderDetailFactory);
 
-    ordersFactory.$inject = ['$http', 'apiUrl'];
+    orderDetailFactory.$inject = ['$http', 'apiUrl'];
 
     /* @ngInject */
-    function ordersFactory($http, apiUrl) {
+    function orderDetailFactory($http, apiUrl) {
       var service = {
           getAll: getAll,
           getById: getById,
@@ -16,44 +16,37 @@
           remove: remove,
           update: update
         };
-
         return service;
-
         function getAll(){
           return $http
-              .get(apiUrl + 'orders')
+              .get(apiUrl + 'orderDetail')
               .then(function(response){
                 return response.data;
               });
             }
-
           function getById(id){
             return $http
-                .get(apiUrl +'orders/'+ id)
+                .get(apiUrl +'orderDetail/'+ id)
                 .then(function(response){
                   return response.data;
                 });
           }
-
-          function update(id, orders){
-                return $http.put(apiUrl +'orders/' + id, orders);
+          function update(id, orderDetail){
+                return $http.put(apiUrl +'orderDetail/' + id, orderDetail);
           }
-
-          function create(orders){
+          function create(orderDetail){
             return $http
-                .post(apiUrl, 'orders')
+                .post(apiUrl, 'orderDetail')
                 .then(function(response){
                   return response.data;
                 });
           }
-
           function remove(id){
             return $http
-            .delete(apiUrl +'orders/' + id)
+            .delete(apiUrl +'orderDetail/' + id)
             .then(function(response){
               return response.data;
             });
           }
-
         }
 })();

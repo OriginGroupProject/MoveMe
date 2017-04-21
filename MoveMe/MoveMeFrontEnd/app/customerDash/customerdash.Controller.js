@@ -5,47 +5,33 @@
         .module('app.customerDash')
         .controller('CustomerDashController', CustomerDashController);
 
-    CustomerDashController.$inject = [ 'CustomerDashFactory','ordersFactory', '$state', 'apiUrl', '$stateParams'];
+    CustomerDashController.$inject = ['CustomerDashFactory', 'ordersFactory', '$state', 'apiUrl', '$stateParams'];
 
     /* @ngInject */
-    function CustomerDashController(CustomerDashFactory, $state, apiUrl, $stateParams ) {
+    function CustomerDashController(CustomerDashFactory, $state, apiUrl, $stateParams) {
         var vm = this;
         vm.widget = "dashboard";
         activate();
 
 
         function activate() {
-            var id = $stateParams.id;
+            //var id = $stateParams.id;
+           var id = 1;
 
-          function getById(id){
-            return $http
-                .get(apiUrl+'customerdash/calendar'+ id)
-                .then(function(response){
-                  return response.data;
+            CustomerDashFactory
+                .getCalendar(id)
+                .then(function(response) {
+                    vm.calendar = response;
 
                 });
-              }
-        /*  var id = 1;
-          CustomerDashFactory
-            .getCalendar(id)
-            .then(function(data) {
-              vm.calendar = data;
-            })
+            CustomerDashFactory
+                .getUpComing(id)
+                .then(function(response) {
+                    vm.upComing = response;
 
-
-        CustomerDashFactory
-            .getJobs(id)
-            .then(function(data){
-              vm.jobs = data;
-            })
-
-        companiesFactory
-            .getById(id)
-            .then(function(data){
-              vm.company = data;
-            })
-          */
+                });
+        }
     }
 
-    }
+
 })();

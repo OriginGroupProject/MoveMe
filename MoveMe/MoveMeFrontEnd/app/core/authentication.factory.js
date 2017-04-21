@@ -31,7 +31,7 @@
             }
         }
 
-        function register(registration) {
+        function registerCustomer(registration) {
             logout();
 
             var defer = $q.defer();

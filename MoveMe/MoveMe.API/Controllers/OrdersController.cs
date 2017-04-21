@@ -32,6 +32,7 @@ namespace MoveMe.API.Controllers
                 order.Rating,
                 order.Cost,
                 order.Canceled,
+
                 JobDetail = new {
                     order.Customer.FirstName
                 }

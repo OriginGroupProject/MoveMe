@@ -6,10 +6,11 @@ using System.Web;
 using MoveMe.API.Models;
 using MoveMe.API.Migrations;
 using System.Data.Entity.SqlServer;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MoveMe.API.Data
 {
-    public class MoveMeDataContext : DbContext
+    public class MoveMeDataContext : IdentityDbContext<User>
     {
         public MoveMeDataContext() : base("MoveMe")
         {
@@ -26,11 +27,13 @@ namespace MoveMe.API.Data
         public IDbSet<JobDetail> JobDetails { get; set; }
         public IDbSet<Order> Orders { get; set; }
         public IDbSet<PaymentDetail> PaymentDetails { get; set; }
-        public IDbSet<User> Users { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
+
             // Company has many inventories and many orders 
 
 
