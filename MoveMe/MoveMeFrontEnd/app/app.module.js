@@ -17,7 +17,9 @@
             'app.wizard'
         ])
         .value('apiUrl', 'http://movemeapi-dev.azurewebsites.net/api/')
-        .config(function($stateProvider, $urlRouterProvider) {
+        .config(function($stateProvider, $urlRouterProvider,$httpProvider) {
+            $httpProvider.interceptors.push('authInterceptorService');
+
             $urlRouterProvider.otherwise('/home');
             $stateProvider
                 .state('home', {
@@ -49,12 +51,32 @@
                     templateUrl: 'app/companyDash/companyDash.html'
                 });
             $stateProvider
+                .state('orders', {
+                    url: '/orders',
+                    abstract: true,
+                    template: '<div ui-view></div>'
+                })
+
+            $stateProvider
+
                 .state('orders.grid', {
                     url: '/grid',
                     controller: 'OrdersGridController as ordersGridCtrl',
                     templateUrl: 'app/orders/orders.grid.html'
                 })
 
+            $stateProvider
+                .state('register', {
+                    url: '/register',
+                    controller: 'RegisterController as registerCtrl',
+                    templateUrl: 'app/register/register.html'
+                })
+            $stateProvider
+                .state('login', {
+                    url: '/login',
+                    controller: 'LoginController as loginCtrl',
+                    templateUrl: '/app/login/login.html'
+                })
 
         });
 })();
