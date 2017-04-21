@@ -1,150 +1,93 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Description;
-using MoveMe.API.Data;
+﻿using MoveMe.API.Data;
 using MoveMe.API.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web.Http;
 
 namespace MoveMe.API.Controllers
 {
     public class UsersController : ApiController
     {
-        private MoveMeDataContext db = new MoveMeDataContext();
+        private UserManager<User> _userManager;
 
-        // GET: api/Users
-        public IHttpActionResult GetUsers()
+        public UsersController()
         {
-            var resultSet = db.Users.Select(user => new
-            {
-                user.UserId,
-                user.EmailAddress,
-                user.Password, 
-                user.Company,
-                user.Customer
-            });
-            return Ok(resultSet);
+            var db = new MoveMeDataContext();
+            var store = new UserStore<User>(db);
+
+            _userManager = new UserManager<User>(store);
         }
 
-        // GET: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult GetUser(int id)
-        {
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            var resultSet = new
-            {
-                user.UserId,
-                user.EmailAddress,
-                user.Password,
-                user.Company,
-                user.Customer
-            };
-            return Ok(resultSet);
-        }
-
-        // PUT: api/Users/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutUser(int id, User user)
+        // POST: api/users/register
+        [AllowAnonymous]
+        [Route("api/users/registerCustomer")]
+        public IHttpActionResult RegisterCustomer(RegistrationModel registration)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != user.UserId)
+            var user = new User
             {
-                return BadRequest();
-            }
-
-            var dbUser = db.Users.Find(id);
-            dbUser.UserId = user.UserId;
-            dbUser.EmailAddress = user.EmailAddress;
-            dbUser.Password = user.Password;
-            dbUser.Company = user.Company;
-            dbUser.Customer = user.Customer;
-
-            db.Entry(dbUser).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
+                UserName = registration.EmailAddress,
+                Customer = new Customer
                 {
-                    return NotFound();
+                    FirstName = registration.FirstName,
+                    LastName = registration.LastName
                 }
-                else
-                {
-                    throw;
-                }
-            }
+            };
 
-            return StatusCode(HttpStatusCode.NoContent);
+            var result = _userManager.Create(user, registration.Password);
+
+            if (result.Succeeded)
+            {
+                _userManager.AddToRole(user.Id, "Customer");
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Invalid user registration");
+            }
         }
 
-        // POST: api/Users
-        [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser(User user)
+        [AllowAnonymous]
+        [Route("api/users/registerMover")]
+        public IHttpActionResult RegisterMover(RegistrationModel registration)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = user.UserId }, user);
-        }
-
-        // DELETE: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult DeleteUser(int id)
-        {
-            User user = db.Users.Find(id);
-            if (user == null)
+            var user = new User
             {
-                return NotFound();
-            }
-
-            db.Users.Remove(user);
-            db.SaveChanges();
-
-            var resultSet = new
-            {
-                user.UserId,
-                user.EmailAddress,
-                user.Password,
-                user.Company,
-                user.Customer
+                UserName = registration.EmailAddress,
+                Company = new Company
+                {
+                    CompanyName = registration.CompanyName,
+                    StreetAddress = registration.LastName,
+                    City = registration.City,
+                    State = registration.State,
+                    Zip = registration.Zip
+                }
             };
-            return Ok(resultSet);
-        }
 
+            var result = _userManager.Create(user, registration.Password);
+
+            if (result.Succeeded)
+            {
+                _userManager.AddToRole(user.Id, "Detailer");
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Invalid user registration");
+            }
+        }
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool UserExists(int id)
-        {
-            return db.Users.Count(e => e.UserId == id) > 0;
+            _userManager.Dispose();
         }
     }
 }
