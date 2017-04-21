@@ -32,7 +32,10 @@ namespace MoveMe.API.Controllers
                 order.Rating,
                 order.Cost,
                 order.Canceled,
-                order.JobDetail
+
+                JobDetail = new {
+                    order.Customer.FirstName
+                }
             });
             return Ok(resultSet);
         }
@@ -56,7 +59,7 @@ namespace MoveMe.API.Controllers
                 order.Rating,
                 order.Cost,
                 order.Canceled,
-                order.JobDetail
+                
             };
             return Ok(resultSet);
         }

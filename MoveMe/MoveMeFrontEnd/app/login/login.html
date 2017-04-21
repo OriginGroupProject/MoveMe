@@ -1,0 +1,28 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Log in:
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label for="user">Username</label>
+          <input class="form-control" id="user" type="text" ng-model="loginCtrl.username" placeholder="Enter Username">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label for="pword">Password</label>
+          <input class="form-control" id="pword" type="password" ng-model="loginCtrl.password" placeholder="Enter Password>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer clearfix">
+    <button ng-click="loginCtrl.login()"class="btn btn-success pull-right">
+      Save <i class="glyphicon glyphicon-save"></i>
+    </button>
+  </div>
+</div>

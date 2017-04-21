@@ -2,6 +2,7 @@
 <html ng-app="app">
 
 
+
 <head>
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-wizard/dist/angular-wizard.min.css" />
@@ -11,30 +12,31 @@
 
     <!-- inject:css -->
     <link rel="stylesheet" href="app/companyDash/style.css">
+    <link rel="stylesheet" href="app/styles.css">
+
     <!-- endinject -->
 </head>
 
+
 <body>
-
-    <h1>MoveMe</h1>
     <div ui-view></div>
-
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-wizard/dist/angular-wizard.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/chart.js/dist/Chart.js"></script>
-    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
     <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script src="bower_components/chart.js/dist/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <!-- endbower -->
 
     <!-- inject:js -->
     <script src="app/app.module.js"></script>
     <script src="app/companyDash/companyDash.module.js"></script>
+    <script src="app/companyDash/orders.module.js"></script>
     <script src="app/companyForm/companyForm.module.js"></script>
     <script src="app/customerDash/customerDash.module.js"></script>
     <script src="app/landing/landing.module.js"></script>
@@ -43,11 +45,14 @@
     <script src="app/wizard/wizard.module.js"></script>
     <script src="app/companyDash/jobsmodule/orders.module.js"></script>
     <script src="app/companyDash/companyDash.controller.js"></script>
+    <script src="app/companyDash/orders.detail.controller.js"></script>
+    <script src="app/companyDash/orders.grid.controller.js"></script>
     <script src="app/core/companies.factory.js"></script>
     <script src="app/core/customerDash.factory.js"></script>
     <script src="app/core/customers.factory.js"></script>
     <script src="app/core/jobDetail.factory.js"></script>
     <script src="app/core/moversDash.factory.js"></script>
+    <script src="app/core/orderDetail.factory.js"></script>
     <script src="app/core/orders.factory.js"></script>
     <script src="app/core/paymentDetail.factory.js"></script>
     <script src="app/core/results.factory.js"></script>
@@ -59,5 +64,6 @@
     <script src="app/companyDash/jobsmodule/orders.grid.controller.js"></script>
     <!-- endinject -->
 </body>
+
 
 </html>
