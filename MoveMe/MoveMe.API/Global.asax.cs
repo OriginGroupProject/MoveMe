@@ -12,13 +12,12 @@ namespace MoveMe.API
     {
         protected void Application_Start()
         {
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            
+            //GlobalConfiguration.Configure(WebApiConfig.Register);
             //SqlServerTypes.Utilities.LoadNativeAssemblies(Server.MapPath("~/bin"));
             //HttpConfiguration config = GlobalConfiguration.Configuration;
 
-            //config.Formatters.JsonFormatter
-            //.SerializerSettings
-            //.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+           // config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }

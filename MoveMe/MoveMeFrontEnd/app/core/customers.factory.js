@@ -16,7 +16,9 @@
           remove: remove,
           update: update
         };
+
         return service;
+
         function getAll(){
           return $http
               .get(apiUrl + 'customers')
@@ -24,6 +26,7 @@
                 return response.data;
               });
             }
+
           function getById(id){
             return $http
                 .get(apiUrl +'customers/'+ id)
