@@ -82,6 +82,7 @@ namespace MoveMe.API.Controllers
             }
 
 
+
             var dbCompany = db.Companys.Find(id);
             dbCompany.CompanyId = company.CompanyId;
             dbCompany.CompanyName = company.CompanyName;
@@ -94,7 +95,6 @@ namespace MoveMe.API.Controllers
             dbCompany.Radius = company.Radius;
             dbCompany.HourlyRate = company.HourlyRate;
             db.Entry(dbCompany).State = EntityState.Modified;
-
 
             try
             {

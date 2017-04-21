@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  background: #222;
+  font-family: ariel, helvetica;
+  font-weight: 300;
+}
+
+body.orders.detil {
+    background-image: url("/images/moving-truck.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+#logo {
+  position: absolute;
+}
+
+  header, footer {
+    min-height: 400px;
+
+  }
+  section {
+
+  }
+/****** PARALLAX SECTIONS ******/
+/* this is where the magic happens*/
+section.footer {
+padding: 5em 1em!important;
+background-image: url("images/moversBG.jpg");
+position: relative;
+background-size: cover;
+background-attachment: fixed;
+background-position: 25% 50%;
+padding: 2em;
+color: white;
+min-height: 300px;
+  /* ^ change the min height to whatever height you need */
+}
+section.parallax div.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(105, 105, 105, 0.38) 51%, rgba(0, 0, 0, 0.21) 100%);
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+section.parallax div.desc {
+padding-top: 3em !important;
+  max-width: 450px;
+  text-align: center;
+  padding-top: 5em;
+  position: relative;
+  z-index: 2;
+}
+  .parallax h2, .parallax p {
+    text-align: center;
+  }
+
+section.below-header {
+padding: 5em 1em!important;
+background-image: url("images/mailbox.jpg");
+position: relative;
+background-size: cover;
+background-attachment: fixed;
+background-position: 25% 50%;
+padding: 2em;
+color: white;
+min-height: 300px;
+  /* ^ change the min height to whatever height you need */
+}
+section.parallax div.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(105, 105, 105, 0.38) 51%, rgba(0, 0, 0, 0.21) 100%);
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+section.parallax div.desc {
+padding-top: 3em !important;
+  max-width: 450px;
+  text-align: center;
+  padding-top: 5em;
+  position: relative;
+  z-index: 2;
+}
+  .parallax h2, .parallax p {
+    text-align: center;
+  }
+
+  section.parallax {
+  padding: 5em 1em!important;
+  background-image: url("images/background-2.gif");
+  position: relative;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: 25% 50%;
+  padding: 2em;
+  color: white;
+  min-height: 400px;
+    /* ^ change the min height to whatever height you need */
+  }
+  section.parallax div.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(105, 105, 105, 0.38) 51%, rgba(0, 0, 0, 0.21) 100%);
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+
+  section.parallax div.desc {
+  padding-top: 3em !important;
+    max-width: 450px;
+    text-align: center;
+    padding-top: 5em;
+    position: relative;
+    z-index: 2;
+  }
+    .parallax h2, .parallax p {
+      text-align: center;
+    }

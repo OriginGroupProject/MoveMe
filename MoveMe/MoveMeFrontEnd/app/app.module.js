@@ -1,34 +1,70 @@
 (function() {
   'use strict';
+    angular
+        .module('app', [
+            'chart.js',
+            'ui.router',
+            'ui.calendar',
+            'mgo-angular-wizard',
+            'app.companyDash',
+            'app.companyForm',
+            'app.customerDash',
+            'app.landing',
+            'app.orders',
+            'app.orderDetail',
+            'app.results',
+            'app.wizard',
+            'app.customers',
+            'oitozero.ngSweetAlert'
+        ])
+        .value('apiUrl', 'http://movemeapi-dev.azurewebsites.net/api/')
+        .config(function($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('/home');
+            $stateProvider
+                .state('home', {
+                    url: '/home',
+                    templateUrl: 'app/landing/landing.html'
+                })
 
-  angular
-    .module('app', [
-      'ui.router',
-      'mgo-angular-wizard',
-      'app.wizard',
-      'app.customers',
-      'oitozero.ngSweetAlert'
-    ])
-    .value('apiUrl', 'http://movemeapi-dev.azurewebsites.net/api/')
-    .config(function($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('/wizard');
 
-      $stateProvider
-        .state('wizard', {
-          url: '/wizard',
-          controller: 'WizardController as wizCtrl',
-          templateUrl: 'app/wizard/wizard.html'
-        })
-        .state('customers', {
-          url: '/customers',
-          abstract: true,
-          template: '<div ui-view></div>'
-        })
-        .state('customers.grid', {
-          url: '/grid', //http://localhost:3000/#/grid
-          controller: 'CustomersGridController as customersGridCtrl',
-          templateUrl: 'app/customers/customers.grid.html'
+            $stateProvider
+                .state('wizard', {
+                    url: '/wizard',
+                    controller: 'WizardController as wizCtrl',
+                    templateUrl: 'app/wizard/wizard.html'
+                })
+                .state('orders', {
+                    url: '/orders',
+                    abstract: true,
+                    template: '<div ui-view></div>'
+                })
+                .state('orderD', {
+                    url: '/detail/:id',
+                    controller: 'OrdersDetailController as ordersDetailCtrl',
+                    templateUrl: 'app/companyDash/orders.detail.html'
+                })
+            $stateProvider
+                .state('companydash', {
+                    url: '/companydash',
+                    controller: 'CompanyDashController as companyDashCtrl',
+                    templateUrl: 'app/companyDash/companyDash.html'
+                });
+            $stateProvider
+                .state('orders.grid', {
+                    url: '/grid',
+                    controller: 'OrdersGridController as ordersGridCtrl',
+                    templateUrl: 'app/orders/orders.grid.html'
+                })
+                .state('customers', {
+                  url: '/customers',
+                  abstract: true,
+                  template: '<div ui-view></div>'
+                })
+                .state('customers.grid', {
+                  url: '/grid', //http://localhost:3000/#/grid
+                  controller: 'CustomersGridController as customersGridCtrl',
+                  templateUrl: 'app/customers/customers.grid.html'
+                });
+
         });
-    })
-
 })();
