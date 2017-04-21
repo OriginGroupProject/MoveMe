@@ -12,7 +12,7 @@ namespace MoveMe.API.Controllers
     {
         private MoveMeDataContext db = new MoveMeDataContext();
         //for past moves
-        [HttpGet, Route("api/customerdash/calendar")]
+        [HttpGet, Route("api/customerdash/calendar/{id}")]
         public IHttpActionResult GetCharts(int id)
         {
             var resultSet = db.Orders.Where(order => order.CustomerId == id)
@@ -27,10 +27,10 @@ namespace MoveMe.API.Controllers
             return Ok(resultSet);
         }
         //for upcoming current move
-        [HttpGet, Route("api/customerdash/current")]
+        [HttpGet, Route("api/customerdash/current/{id}")]
         public IHttpActionResult GetUpcoming(int id)
         {
-            var order = db.Orders.FirstOrDefault(o => o.CustomerId == id && !o.Canceled && !o.Completed && o.Confirmed);
+            var order = db.Orders.FirstOrDefault(o => o.CustomerId == id && !o.Canceled && !o.Completed);
 
             var result = new
             {
