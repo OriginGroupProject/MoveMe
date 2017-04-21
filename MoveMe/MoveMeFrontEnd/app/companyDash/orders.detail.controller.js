@@ -11,7 +11,7 @@
     function OrdersDetailController(ordersFactory, $stateParams) {
         var vm = this;
 
-        vm.save = save;
+
 
         activate();
 

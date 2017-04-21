@@ -5,6 +5,12 @@ body {
   font-weight: 300;
 }
 
+body.orders.detil {
+    background-image: url("/images/moving-truck.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .container {
   width: 100%;
   margin: 0 auto;
@@ -16,8 +22,6 @@ body {
 
   header, footer {
     min-height: 400px;
-
-
 
   }
   section {
@@ -126,6 +130,3 @@ padding-top: 3em !important;
     .parallax h2, .parallax p {
       text-align: center;
     }
-
-
-/****** LOG IN BUTTON ******/

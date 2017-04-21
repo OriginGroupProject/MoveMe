@@ -14,7 +14,7 @@
           'app.results',
           'app.wizard'
         ])
-        .value('apiUrl', 'https://localhost:57488/api/')
+        .value('apiUrl', 'http://movemeapi-dev.azurewebsites.net/api/')
         .config(function($stateProvider, $urlRouterProvider){
           $urlRouterProvider.otherwise('/home');
           $stateProvider
@@ -36,7 +36,7 @@
             template: '<div ui-view></div>'
           })
           .state('order', {
-            url: '/detail',
+            url: '/detail/:id',
             controller: 'OrdersDetailController as ordersDetailCtrl',
             templateUrl: 'app/companyDash/orders.detail.html'
           })
