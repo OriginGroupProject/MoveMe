@@ -1,48 +1,54 @@
 <table class="table table-striped">
   <thead>
-    <th>OrderId</th>
-    <th>customerId</th>
-    <th>companyId</th>
-    <th>paymentDetailId</th>
-    <th>cost</th>
-    <th>canceled</th>
+    <th>FromStreetAddress</th>
+    <th>FromCity</th>
+    <th>FromState</th>
+    <th>FromZip</th>
+    <th>ToStreetAddress</th>
+    <th>ToCity</th>
+    <th>ToState</th>
+    <th>ToZip</th>
     <th width="1%"></th>
   </thead>
   <tbody>
-  <tr ng-repeat="order in ordersGridCtrl.orders">
+  <tr ng-repeat="jobDetail in ordersGridCtrl.jobDetails">
     <td>
-      {{order.orderId}}
+      {{jobDetail.fromStreetAddress}}
+    </td>
+
+    <td>
+      {{jobDetail.fromCity}}
+    </td>
+
+    <td>
+      {{jobDetail.fromState}}
+    </td>
+
+    <td>
+      {{jobDetail.fromZip}}
+    </td>
+
+    <td>
+      {{jobDetail.toStreetAddress}}
+    </td>
+
+    <td>
+      {{jobDetail.toCity}}
+    </td>
+
+    <td>
+      {{jobDetail.toState}}
     </td>
     <td>
-      {{order.customerId}}
+      {{jobDetail.toZip}}
     </td>
     <td>
-      {{order.companyId}}
-    </td>
-    <td>
-      {{order.paymentDetailId}}
-    </td>
-    <td>
-      {{order.cost}}
-    </td>
-    <td>
-      {{order.canceled}}
-    </td>
-    <!-- <td>
-      {{order.jobDetaiId}}
-    </td> -->
-    <td>
-      <a ui-sref="orders.detail({ id: order.orderId })" class="btn btn-primary">
+      <a ui-sref="orders.detail({ id: jobDetail.jobDetailId })" class="btn btn-primary">
         <i class="glyphicon glyphicon-edit"></i>
       </a>
     </td>
-
-    <a ui-sref="orders.detail({ id: order.orderId })" class="btn btn-primary">
-      <i class="glyphicon glyphicon-edit"></i>
-    </a>
-
     <td>
-      <a ng-click="ordersGridCtrl.remove(order)" href="" class="btn btn-danger">
+      <a ng-click="ordersDetailCtrl.remove(jobDetail)" href="" class="btn btn-danger">
         <i class="glyphicon glyphicon-trash"></i>
       </a>
     </td>

@@ -2,20 +2,24 @@
     'use strict';
 
     angular
-        .module('app.ordersDetail')
+        .module('app.orders')
         .controller('OrdersDetailController', OrdersDetailController);
 
     OrdersDetailController.$inject = ['jobDetailFactory', '$stateParams'];
 
     /* @ngInject */
     function OrdersDetailController(jobDetailFactory, $stateParams) {
+
         var vm = this;
 
         activate();
 
         function activate(){
+
+          var jobDetailId = $stateParams.id;
+          
           jobDetailFactory
-          .getById($stateParams.id)
+          .getById(jobDetailId)
           .then(function(jobDetails){
             vm.jobDetails = jobDetails;
             console.log(vm.jobDetails);
@@ -24,10 +28,8 @@
 
         function save(){
           jobDetailFactory
-          .update(vm.jobDetails.jobDetailsId, vm.jobDetails)
-          .then(
-            console.log("Mr.Anderson... it seems you've changed " + vm.jobDetails.firstName)
-          )
+          .update(vm.jobDetails.jobDetailId, vm.jobDetails)
+          .then()
         }
     }
 })();

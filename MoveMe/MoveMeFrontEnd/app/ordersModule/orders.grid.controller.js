@@ -5,20 +5,28 @@
         .module('app.orders')
         .controller('OrdersGridController', OrdersGridController);
 
-    OrdersGridController.$inject = ['ordersFactory'];
+    OrdersGridController.$inject = ['jobDetailFactory'];
 
     /* @ngInject */
-    function OrdersGridController(ordersFactory) {
+    function OrdersGridController(jobDetailFactory) {
         var vm = this;
 
         activate();
 
         function activate(){
-          ordersFactory
+          jobDetailFactory
           .getAll()
-          .then(function(orders){
-            vm.orders = orders;
-          })
+          .then(function(jobDetails){
+            vm.jobDetails = jobDetails;
+          });
+        }
+
+       function remove(order){
+          ordersFactory
+          .remove(order.orderId)
+          .then(function() {
+            vm.orders.splice(vm.orders.indexOf(order), 1);
+          });
         }
 
     }
