@@ -22,6 +22,9 @@ namespace MoveMe.API
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            // enable error reporting
+            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+
             //enable cors
             config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
             //camel case

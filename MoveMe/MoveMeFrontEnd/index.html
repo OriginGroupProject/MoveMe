@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html ng-app="app">
 
-<head>
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angular-wizard/dist/angular-wizard.min.css" />
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
-    <!-- endbower -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-    <!-- inject:css -->
-    <!-- endinject -->
-</head>
 
-<body>
+  <div ui-view></div>
+    <head>
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/angular-wizard/dist/angular-wizard.min.css" />
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
+        <!-- endbower -->
+
+        <!-- inject:css -->
+        <link rel="stylesheet" href="app/customerDash/style.css">
+        <!-- endinject -->
+    </head>
 
     <h1>MoveMe</h1>
     <div ui-view></div>
@@ -58,5 +58,6 @@
     <script src="app/wizard/wizard.controller.js"></script>
     <!-- endinject -->
 </body>
+
 
 </html>

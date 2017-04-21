@@ -3,19 +3,34 @@
 
     angular
         .module('app', [
+            'chart.js',
             'ui.router',
+            'ui.calendar',
             'mgo-angular-wizard',
             'app.companyDash',
             'app.companyForm',
             'app.customerDash',
             'app.landing',
+            'app.orderDetail',
             'app.results',
-            'app.wizard',
-            'app.orders'
+            'app.wizard'
         ])
         .value('apiUrl', 'http://movemeapi-dev.azurewebsites.net/api/')
         .config(function($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise('/wizard');
+            $urlRouterProvider.otherwise('/home');
+
+
+            $stateProvider
+                .state('home', {
+                    url: '/home',
+                })
+            //customdash state$stateProvider
+            $stateProvider
+                .state('customerDash', {
+                    url: '/customerdash',
+                    controller: 'CustomerDashController as custDashCtrl',
+                    templateUrl: 'app/customerDash/customerDash.html'
+                })
 
 
             $stateProvider
@@ -24,24 +39,26 @@
                     controller: 'WizardController as wizCtrl',
                     templateUrl: 'app/wizard/wizard.html'
                 })
+
+
+
+            $stateProvider
+                .state('companydash', {
+                    url: '/companydash',
+                    controller: 'CompanyDashController as companyDashCtrl',
+                    templateUrl: 'app/companyDash/companyDash.html'
+                });
+
             $stateProvider
                 .state('orders', {
                     url: '/orders',
                     abstract: true,
                     template: '<div ui-view></div>'
                 })
-                $stateProvider
                 .state('orders.grid', {
                     url: '/grid',
                     controller: 'OrdersGridController as ordersGridCtrl',
-                    templateUrl: 'app/ordersModule/orders.grid.html'
+                    templateUrl: 'app/orders/orders.grid.html'
                 })
-                $stateProvider
-                .state('orders.detail', {
-                    url: '/detail/:id',
-                    controller: 'OrdersDetailController as ordersDetailCtrl',
-                    templateUrl: 'app/orderDetail/orders.detail.html'
-                })
-        })
-
+        });
 })();

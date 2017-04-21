@@ -11,8 +11,8 @@ namespace MoveMe.API.Controllers
     public class CustomerDashboardController : ApiController
     {
         private MoveMeDataContext db = new MoveMeDataContext();
-
-        [HttpGet, Route("api/customerdash/calendar")]
+        //for past moves
+        [HttpGet, Route("api/customerdash/calendar/{id}")]
         public IHttpActionResult GetCharts(int id)
         {
             var resultSet = db.Orders.Where(order => order.CustomerId == id)
@@ -25,6 +25,24 @@ namespace MoveMe.API.Controllers
                                   });
 
             return Ok(resultSet);
+        }
+        //for upcoming current move
+        [HttpGet, Route("api/customerdash/current/{id}")]
+        public IHttpActionResult GetUpcoming(int id)
+        {
+            var order = db.Orders.FirstOrDefault(o => o.CustomerId == id && !o.Canceled && !o.Completed);
+
+            var result = new
+            {
+                order.Company.CompanyName,
+                order.JobDetail.FromStreetAddress,
+                order.JobDetail.FromCity,
+                order.JobDetail.ToStreetAddress,
+                order.JobDetail.ToCity,
+                order.JobDetail.MovingDay
+            };
+
+            return Ok(result);
         }
 
         protected override void Dispose(bool disposing)
