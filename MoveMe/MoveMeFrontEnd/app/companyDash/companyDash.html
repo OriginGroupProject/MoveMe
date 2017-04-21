@@ -1,13 +1,13 @@
 <head>
+    <link rel="stylesheet" href="moving-truck.png">
 </head>
 
 <body ng-controller="CompanyDashController as companyDashCtrl">
 
     <div class='container'>
-        <div class='jumbotron'>
-            <div align='Center'>
-                <h1>Your Movers Dashboard</h1>
-            </div>
+        <div align='Center'>
+
+            <h1 style="margin-top: 200px;">Your Movers Dashboard</h1>
         </div>
         <!-- <div id="NavBar">
             <nav class="navbar navbar-default">
@@ -66,11 +66,8 @@
                 </div>
                 <div ng-show="companyDashCtrl.widget =='calendar'">
                     <div id="calendar">
-                          <h1>Calendar</h1>
-                          <div id="calendar"
-                               class="calendar"
-                               ui-calendar="companyDashCtrl.calendar.options"
-                               ng-model="companyDashCtrl.calendar.eventSources"></div>
+                        <h1>Calendar</h1>
+                        <div id="calendar" class="calendar" ui-calendar="companyDashCtrl.calendar.options" ng-model="companyDashCtrl.calendar.eventSources"></div>
 
                     </div>
                 </div>

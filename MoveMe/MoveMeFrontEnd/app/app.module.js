@@ -17,7 +17,8 @@
             'app.wizard'
         ])
         .value('apiUrl', 'http://movemeapi-dev.azurewebsites.net/api/')
-        .config(function($stateProvider, $urlRouterProvider,$httpProvider) {
+
+        .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
             $httpProvider.interceptors.push('authInterceptorService');
 
             $urlRouterProvider.otherwise('/home');
@@ -26,7 +27,6 @@
                     url: '/home',
                     templateUrl: 'app/landing/landing.html'
                 })
-
 
             $stateProvider
                 .state('wizard', {
