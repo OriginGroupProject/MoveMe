@@ -1,20 +1,23 @@
-<link rel="styles.css" href="styles.css" media="all" type="text/css">
-<div id="body">
+
+
 <head>
-  <div ng-controller="CustomerDashController as custDashCtrl">
-      <div class='container'>
-          <div class='jumbotron'>
-              <div align='Center'>
-                  <h1>Customer DASH</h1>
-              </div>
-          </div>
-      </div>
+
+  <link rel="stylesheet" href="styles.css">
+
+
+<div class='container'>
+
+        <div align='Center'>
+            <h1 style="margin-top: 600px;">Customer Dashboard</h1>
+        </div>
+    </div>
+</div>
 </head>
 
 <body>
-    <div id="body">
 
 
+  <div ng-controller="CustomerDashController as custDashCtrl">
 
             <div class="row" id="buttonsAndDisplayBox">
                 <div class="col-md-1"></div>
@@ -32,11 +35,12 @@
                     <div ng-show="custDashCtrl.widget =='dashboard'">
                         <div id="dashboard">
                             <h1>Up Coming Move!</h1>
-                            <div ng-repeat="move in custDashCtrl.move">
+                            <div>
 
-                                <h3>{{move.title}}</h3>
-                                <h3>{{move.start}}</h3>
-                                <h3>{{move.end}}</h3>
+                                <h3>{{custDashCtrl.upComing.companyName}}</h3>
+                                <h3>{{custDashCtrl.upComing.fromstreetAddress}}</h3>
+                                <h3>{{custDashCtrl.upComing.toStreetAddress}}</h3>
+                                <h3>{{custDashCtrl.upComing.movingDay}}</h3>
                             </div>
                         </div>
                     </div>
@@ -53,10 +57,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="move in custDashCtrl.move">
-                                        <td>{{move.title}}</td>
-                                        <td>{{move.start}}</td>
-                                        <td>{{move.end}}</td>
+                                    <tr ng-repeat="past in custDashCtrl.calendar">
+                                        <td>{{past.title}}</td>
+                                        <td>{{past.start}}</td>
+                                        <td>{{past.end}}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -15,7 +15,7 @@
             'app.results',
             'app.wizard'
         ])
-        .value('apiUrl', 'http://localhost:57488/api/')
+        .value('apiUrl', 'http://movemeapi-dev.azurewebsites.net/api/')
         .config(function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/home');
 
