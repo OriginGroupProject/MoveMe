@@ -5,35 +5,58 @@
         .module('app.companyDash')
         .controller('CompanyDashController', CompanyDashController);
 
-    CompanyDashController.$inject = [ 'MoversDashFactory', 'companiesFactory', '$stateparams'];
+    CompanyDashController.$inject = ['MoversDashFactory', 'companiesFactory', '$stateParams', 'uiCalendarConfig'];
 
     /* @ngInject */
-    function CompanyDashController(MoversDashFactory, companiesFactory, $stateparams) {
+    function CompanyDashController(MoversDashFactory, companiesFactory, $stateParams, uiCalendarConfig) {
         var vm = this;
-
-
+        vm.widget = "revenueChart";
         activate();
 
+        function getEvents(start, end, timezone, callback) {
+    			MoversDashFactory
+    				.getCalendar(1)
+    				.then(function(events) {
+    				      callback(events)
+    				});
+    		}
+    		vm.calendar = {
+    			options: {
+    				height: 800,
+            defaultView: 'month',
+    				editable: false,
+    				header: {
+              left: 'title',
+              right: 'today prev,next'
+            }
+    			},
+    			eventSources: [
+    				getEvents
+    			]
+    		};
+
         function activate() {
-          var id = $stateparams.id;
-          MoversDashFactory
-            .getCalendar(id)
-            .then(function(data) {
-              vm.calendar = data;
-            })
+            var id = $stateParams.id;
+
+            MoversDashFactory
+                .getRevenueChart(1)
+                .then(function(data) {
+                    vm.revenueChart = {
+                        data: data,
+                        labels: data.map(data => data.x)
+                    };
+                });
+            MoversDashFactory
+                .getUtilizationChart(1)
+                .then(function(data) {
+                    vm.utilizationChart = {
+                        data: data,
+                        labels: data.map(data => data.x)
+                    };
+                });
+
+        }
 
 
-        MoversDashFactory
-            .getJobs(id)
-            .then(function(data){
-              vm.jobs = data;
-            })
-
-        companiesFactory
-            .getById(id)
-            .then(function(data){
-              vm.company = data;
-            })
-    }
     }
 })();
