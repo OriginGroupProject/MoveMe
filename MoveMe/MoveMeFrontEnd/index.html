@@ -6,20 +6,31 @@
         <link rel="stylesheet" href="bower_components/angular-wizard/dist/angular-wizard.min.css" />
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
+        <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css" />
         <!-- endbower -->
 
+        <style>
+        body {
+                background-image: url("http://i65.tinypic.com/11ala82.jpg");
+                  background-size: cover;
+        }
+
+        </style>
         <!-- inject:css -->
         <!-- endinject -->
     </head>
 
     <body>
-
-        <h1>MoveMe</h1>
+      <div class='container'>
+        <div class="page-header">
+          <a href="http://tinypic.com?ref=69fjgo" target="_blank"><img src="http://i63.tinypic.com/69fjgo.png" border="0" alt="Image and video hosting by TinyPic"></a>
+        </div>
+      </div>
         <div ui-view></div>
-
         <!-- bower:js -->
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-wizard/dist/angular-wizard.min.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="bower_components/moment/moment.js"></script>
@@ -27,13 +38,16 @@
         <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
         <script src="bower_components/chart.js/dist/Chart.js"></script>
         <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+        <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="bower_components/ngSweetAlert/SweetAlert.js"></script>
         <!-- endbower -->
 
         <!-- inject:js -->
         <script src="app/app.module.js"></script>
-        <script src="app/companyDash/companyDash.module.js"></script>
         <script src="app/companyForm/companyForm.module.js"></script>
+        <script src="app/companyDash/companyDash.module.js"></script>
         <script src="app/customerDash/customerDash.module.js"></script>
+        <script src="app/customers/customers.module.js"></script>
         <script src="app/landing/landing.module.js"></script>
         <script src="app/orderDetail/orderDetail.module.js"></script>
         <script src="app/results/results.module.js"></script>
@@ -48,6 +62,7 @@
         <script src="app/core/paymentDetail.factory.js"></script>
         <script src="app/core/results.factory.js"></script>
         <script src="app/core/user.factory.js"></script>
+        <script src="app/customers/customers.grid.controller.js"></script>
         <script src="app/landing/landing.controller.js"></script>
         <script src="app/orderDetail/orderDetail.controller.js"></script>
         <script src="app/results/results.controller.js"></script>
