@@ -1,0 +1,44 @@
+<div ng-app="app">
+  <div ng-controller="WizardController as wizCtrl">
+    <wizard on-finish="finishedWizard()">
+      <wz-step wz-title="FromAddress">
+        <h1>Where are you moving from, buddeh?</h1>
+        <form>
+          <input type="text" ng-model="wizCtrl.fromStreetAddress" placeholder="Current Address">
+          <input type="text" ng-model="wizCtrl.fromCity" placeholder="City">
+          <input type="text" ng-model="wizCtrl.fromState" placeholder="State Abbreviation">
+          <input type="text" ng-model="wizCtrl.fromZip" placeholder="Zip">
+        </form>
+        <input type="submit" wz-next value="Continue" />
+      </wz-step>
+      <wz-step wz-title="toAddress">
+        <h1>Where are you moving to, friend?</h1>
+        <form>
+          <input type="text" ng-model="wizCtrl.toStreetAddress" placeholder="New Address">
+          <input type="text" ng-model="wizCtrl.toCity" placeholder="City">
+          <input type="text" ng-model="wizCtrl.toState" placeholder="State Abbreviation">
+          <input type="text" ng-model="wizCtrl.toZip" placeholder="Zip">
+        </form>
+        <input type="submit" wz-next value="Continue" />
+      </wz-step>
+      <wz-step wz-title="Dwelling Details">
+        <h1>How big is your crib, guy?</h1>
+        <form>
+          <input type="text" ng-model="wizCtrl.sqFeet" placeholder="Approximate Square Footage">
+        </form>
+        <input type="submit" wz-next value="Continue" />
+      </wz-step>
+
+      <wz-step wz-title="Moving Date">
+        <h1>When are you moving, friend?</h1>
+        <form>
+          <input type="text" ng-model="wizCtrl.MovingDay" placeholder="Date">
+        </form>
+        <input type="submit" wz-next value="Continue" />
+      </wz-step>
+      <wz-step>
+        <input type="submit" wz-next value="Finish now" />
+      </wz-step>
+    </wizard>
+  </div>
+</div>

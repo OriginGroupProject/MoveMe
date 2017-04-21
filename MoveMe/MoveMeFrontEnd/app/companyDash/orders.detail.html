@@ -1,0 +1,101 @@
+<link rel="stylesheet" href="app/styles.css">
+<section class="body.orders.detil">
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Confirmation Page</strong>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" type="text" class="form-control" ng-model="ordersDetailCtrl.jobDetail.Customer.firstName">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input id="lastName" type="text" class="form-control" ng-model="ordersDetailCtrl.jobDetail.Customer.lastName">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="emailAddress">Current Street Address</label>
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersDetailCtrl.jobDetail.fromStreetAddress">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="emailAddress">Current City</label>
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersDetailCtrl.jobDetail.fromcity">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="emailAddress">Current State</label>
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersDetailCtrl.jobDetail.fromState">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="emailAddress">Current Zip Code</label>
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersDetailCtrl.jobDetail.fromZip">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="emailAddress">Current Square Footage (Approx)</label>
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersDetailCtrl.jobDetail.sqFeet">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="emailAddress">Moving to Street Address</label>
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersDetailCtrl.jobDetail.ToStreetAddress">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="emailAddress">Moving to City</label>
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersDetailCtrl.jobDetail.toCity">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="emailAddress">Moving to State</label>
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersDetailCtrl.jobDetail.toState">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="emailAddress">Moving to Zip Code</label>
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersDetailCtrl.jobDetail.toZip">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="emailAddress">Moving Date</label>
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersDetailCtrl.jobDetail.movingDay">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="emailAddress">Total Distance of the Move</label>
+                <input id="emailAddress" type="text" class="form-control" ng-model="ordersDetailCtrl.jobDetail.distance">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="emailAddress">Final Cost</label>
+                <input id="emailAddress" type="text" class="form-control" ng-model="ResultsController.jobDetail.email">
+            </div>
+        </div>
+        <div class="panel-footer clearfix">
+            <button class="btn btn-success pull-right" ng-click="resultController.save()">
+              Save <i class="glyphicon glyphicon-save"></i>
+            </button>
+        </div>
+      </div>
+    </section>
+    </div>
