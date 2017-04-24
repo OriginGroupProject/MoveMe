@@ -1,6 +1,5 @@
 (function() {
-    'use strict';
-
+  'use strict';
     angular
         .module('app', [
             'chart.js',
@@ -14,7 +13,9 @@
             'app.orders',
             'app.orderDetail',
             'app.results',
-            'app.wizard'
+            'app.wizard',
+            'app.customers',
+            'oitozero.ngSweetAlert'
         ])
         .value('apiUrl', 'http://movemeapi-dev.azurewebsites.net/api/')
 
@@ -72,6 +73,15 @@
                     controller: 'LoginController as loginCtrl',
                     templateUrl: '/app/login/login.html'
                 })
-
+                .state('customers', {
+                  url: '/customers',
+                  abstract: true,
+                  template: '<div ui-view></div>'
+                })
+                .state('customers.grid', {
+                  url: '/grid', //http://localhost:3000/#/grid
+                  controller: 'CustomersGridController as customersGridCtrl',
+                  templateUrl: 'app/customers/customers.grid.html'
+                });
         });
 })();
