@@ -37,6 +37,7 @@ namespace MoveMe.API.Migrations
                         Cost = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Canceled = c.Boolean(nullable: false),
                         Confirmed = c.Boolean(nullable: false),
+                        Completed = c.Boolean(nullable: false),
                         JobDetailId = c.Int(),
                     })
                 .PrimaryKey(t => t.OrderId)
@@ -109,42 +110,114 @@ namespace MoveMe.API.Migrations
                 .Index(t => t.CustomerId);
             
             CreateTable(
-                "dbo.Users",
+                "dbo.AspNetUsers",
                 c => new
                     {
-                        UserId = c.Int(nullable: false, identity: true),
-                        EmailAddress = c.String(),
-                        Password = c.String(),
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Email = c.String(maxLength: 256),
+                        EmailConfirmed = c.Boolean(nullable: false),
+                        PasswordHash = c.String(),
+                        SecurityStamp = c.String(),
+                        PhoneNumber = c.String(),
+                        PhoneNumberConfirmed = c.Boolean(nullable: false),
+                        TwoFactorEnabled = c.Boolean(nullable: false),
+                        LockoutEndDateUtc = c.DateTime(),
+                        LockoutEnabled = c.Boolean(nullable: false),
+                        AccessFailedCount = c.Int(nullable: false),
+                        UserName = c.String(nullable: false, maxLength: 256),
                         CompanyId = c.Int(),
                         CustomerId = c.Int(),
                     })
-                .PrimaryKey(t => t.UserId)
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Companies", t => t.CompanyId)
                 .ForeignKey("dbo.Customers", t => t.CustomerId)
+                .Index(t => t.UserName, unique: true, name: "UserNameIndex")
                 .Index(t => t.CompanyId)
                 .Index(t => t.CustomerId);
+            
+            CreateTable(
+                "dbo.AspNetUserClaims",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        ClaimType = c.String(),
+                        ClaimValue = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.AspNetUserLogins",
+                c => new
+                    {
+                        LoginProvider = c.String(nullable: false, maxLength: 128),
+                        ProviderKey = c.String(nullable: false, maxLength: 128),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.AspNetUserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.AspNetRoles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(nullable: false, maxLength: 256),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Orders", "CompanyId", "dbo.Companies");
             DropForeignKey("dbo.Orders", "JobDetailId", "dbo.JobDetails");
-            DropForeignKey("dbo.Users", "CustomerId", "dbo.Customers");
-            DropForeignKey("dbo.Users", "CompanyId", "dbo.Companies");
+            DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUsers", "CustomerId", "dbo.Customers");
+            DropForeignKey("dbo.AspNetUsers", "CompanyId", "dbo.Companies");
+            DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.PaymentDetails", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.Orders", "PaymentDetailId", "dbo.PaymentDetails");
             DropForeignKey("dbo.Orders", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.JobDetails", "CustomerId", "dbo.Customers");
-            DropIndex("dbo.Users", new[] { "CustomerId" });
-            DropIndex("dbo.Users", new[] { "CompanyId" });
+            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
+            DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
+            DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
+            DropIndex("dbo.AspNetUsers", new[] { "CustomerId" });
+            DropIndex("dbo.AspNetUsers", new[] { "CompanyId" });
+            DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.PaymentDetails", new[] { "CustomerId" });
             DropIndex("dbo.JobDetails", new[] { "CustomerId" });
             DropIndex("dbo.Orders", new[] { "JobDetailId" });
             DropIndex("dbo.Orders", new[] { "PaymentDetailId" });
             DropIndex("dbo.Orders", new[] { "CompanyId" });
             DropIndex("dbo.Orders", new[] { "CustomerId" });
-            DropTable("dbo.Users");
+            DropTable("dbo.AspNetRoles");
+            DropTable("dbo.AspNetUserRoles");
+            DropTable("dbo.AspNetUserLogins");
+            DropTable("dbo.AspNetUserClaims");
+            DropTable("dbo.AspNetUsers");
             DropTable("dbo.PaymentDetails");
             DropTable("dbo.JobDetails");
             DropTable("dbo.Customers");
