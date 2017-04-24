@@ -2,7 +2,5 @@
     'use strict';
 
     angular
-        .module('app.orders', [
-            'dependencies'
-        ]);
+        .module('app.orderDetail', []);
 })();

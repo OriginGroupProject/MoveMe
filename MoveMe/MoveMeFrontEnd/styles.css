@@ -9,6 +9,7 @@ body.orders.detil {
     background-image: url("/images/moving-truck.png");
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: white;
 }
 
 .container {

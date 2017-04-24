@@ -2,7 +2,7 @@
         <div ng-controller="WizardController as wizCtrl">
             <wizard on-finish="finishedWizard()">
                 <wz-step wz-title="FromAddress">
-                    <h1>Where are you moving from, buddeh?</h1>
+                    <h1 style ="padding-top: 100px;">Where are you moving from, buddeh?</h1>
                     <form>
                         <input type="text" ng-model="wizCtrl.fromStreetAddress" placeholder="Current Address">
                         <input type="text" ng-model="wizCtrl.fromCity" placeholder="City">
@@ -26,7 +26,7 @@
                     <form>
                         <input type="text" ng-model="wizCtrl.sqFeet" placeholder="Approximate Square Footage">
                     </form>
-                    <input type="submit" wz-next value="Finish now" />
+                    <input type="submit" ui-sref="results({jobDetail:wizCtrl.jobDetail})" />
                 </wz-step>
             </wizard>
         </div>

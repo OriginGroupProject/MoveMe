@@ -2,13 +2,13 @@
     'use strict';
 
     angular
-        .module('app.orders')
-        .controller('OrdersDetailController', OrdersDetailController);
+        .module('app.orderDetail')
+        .controller('OrderDetailController', OrderDetailController);
 
-    OrdersDetailController.$inject = ['jobDetailFactory', '$stateParams'];
+    OrderDetailController.$inject = ['jobDetailFactory', '$stateParams'];
 
     /* @ngInject */
-    function OrdersDetailController(jobDetailFactory, $stateParams) {
+    function OrderDetailController(jobDetailFactory, $stateParams) {
 
         var vm = this;
 
@@ -17,7 +17,7 @@
         function activate(){
 
           var jobDetailId = $stateParams.id;
-          
+
           jobDetailFactory
           .getById(jobDetailId)
           .then(function(jobDetails){

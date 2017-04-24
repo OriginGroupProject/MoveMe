@@ -11,7 +11,7 @@
     function LoginController($state, authFactory) {
         var vm = this;
 
-        vm.login = login;        
+        vm.login = login;
 
         ////////////////
 

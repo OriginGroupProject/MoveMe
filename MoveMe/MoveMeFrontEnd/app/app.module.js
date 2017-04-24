@@ -19,7 +19,7 @@
         .value('apiUrl', 'http://movemeapi-dev.azurewebsites.net/api/')
 
         .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-            $httpProvider.interceptors.push('authInterceptorService');
+            //$httpProvider.interceptors.push('authInterceptorService');
 
             $urlRouterProvider.otherwise('/home');
             $stateProvider
@@ -50,12 +50,7 @@
                     controller: 'CompanyDashController as companyDashCtrl',
                     templateUrl: 'app/companyDash/companyDash.html'
                 });
-            $stateProvider
-                .state('orders', {
-                    url: '/orders',
-                    abstract: true,
-                    template: '<div ui-view></div>'
-                })
+
 
             $stateProvider
 
