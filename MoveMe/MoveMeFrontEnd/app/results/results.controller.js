@@ -5,13 +5,13 @@
         .module('app.results')
         .controller('ResultsController', ResultsController);
 
-    ResultsController.$inject = ['$stateparams', 'ResultsFactory'];
+    ResultsController.$inject = ['$stateParams', 'ResultsFactory'];
 
     /* @ngInject */
-    function ResultsController($stateparams, ResultsFactory) {
+    function ResultsController($stateParams, ResultsFactory) {
         var vm = this;
 
-        vm.jobDetails = $stateparams.jobDetails;
+        vm.jobDetails = $stateParams.jobDetails;
         vm.getResults = getResults;
         vm.results = [];
 

@@ -15,7 +15,7 @@ namespace MoveMe.API.Controllers
     {
         private MoveMeDataContext db = new MoveMeDataContext();
 
-        [HttpGet, Route("api/results")]
+        [HttpPost, Route("api/results")]
         public IHttpActionResult GetResults(JobDetail jobDetail)
         {
             var geocoder = new Geocoder.GeocodeService();

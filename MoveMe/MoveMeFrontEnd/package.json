@@ -13,7 +13,9 @@
     "gulp-util": "^3.0.8"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "now-start": "gulp serve",
+    "postinstall": "bower install"
   },
   "author": "",
   "license": "ISC",
