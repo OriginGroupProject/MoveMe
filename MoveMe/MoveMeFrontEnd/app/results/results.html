@@ -1,8 +1,106 @@
 <div></div>
 
 form with all job detail information we are sending
+<div ng-controller="ResultsController as resultsCtrl">
+<div class="panel panel-primary" >
+    <div class="panel-heading">
+        <strong>Confirmation Page</strong>
+    </div>
+    <div class="panel-body">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label >Current Street Address</label>
+                <input type="text" class="form-control" ng-model="resultsCtrl.jobDetail.fromStreetAddress">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label >Current City</label>
+                <input type="text" class="form-control" ng-model="resultsCtrl.jobDetail.fromcity">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label >Current State</label>
+                <input type="text" class="form-control" ng-model="resultsCtrl.jobDetail.fromState">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label >Current Zip Code</label>
+                <input type="text" class="form-control" ng-model="resultsCtrl.jobDetail.fromZip">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label >Current Square Footage (Approx)</label>
+                <input type="text" class="form-control" ng-model="resultsCtrl.jobDetail.sqFeet">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label >Moving to Street Address</label>
+                <input type="text" class="form-control" ng-model="resultsCtrl.jobDetail.ToStreetAddress">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label >Moving to City</label>
+                <input type="text" class="form-control" ng-model="resultsCtrl.jobDetail.toCity">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label >Moving to State</label>
+                <input type="text" class="form-control" ng-model="resultsCtrl.jobDetail.toState">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label >Moving to Zip Code</label>
+                <input type="text" class="form-control" ng-model="resultsCtrl.jobDetail.toZip">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label >Moving Date</label>
+                <input type="text" class="form-control" ng-model="resultsCtrl.jobDetail.movingDay">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label >Total Distance of the Move</label>
+                <input type="text" class="form-control" ng-model="resultsCtrl.jobDetail.distance">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label >Final Cost</label>
+                <input type="text" class="form-control" ng-model="resultsCtrl.jobDetail.price">
+            </div>
+        </div>
+        <div class="panel-footer clearfix">
+            <button class="btn btn-success pull-right" ng-click="resultsCtrl.save()">
+              Save <i class="glyphicon glyphicon-save"></i>
+            </button>
+        </div>
+      </div>
+</div>
+<div class="panel" ng-repeat="result in resultsCtrl.results">
+  <div class="panel panel-heading">
+    <h3>{{result.companyName}}</h3>
+  </div>
+  <div class="panel panel-body">
+    <h3>{{result.price}}</h3>
+  </div>
+<div class="panel panel-footer pull-right">
+  <button class="btn btn-primary">
+    Select
+  </button>
+</div>
+</div>
 
-
+</div>
 update with ng-model
 
 update button

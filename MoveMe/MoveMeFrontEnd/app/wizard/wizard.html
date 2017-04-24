@@ -12,7 +12,7 @@
           <input type="submit" wz-next value="Continue" />
       </wz-step>
       <wz-step wz-title="toAddress">
-          <h1>Where are you moving to, friend?</h1>
+          <h1 style ="padding-top: 100px;">Where are you moving to, friend?</h1>
           <form>
               <input type="text" ng-model="wizCtrl.toStreetAddress" placeholder="New Address">
               <input type="text" ng-model="wizCtrl.toCity" placeholder="City">
@@ -22,22 +22,19 @@
           <input type="submit" wz-next value="Continue" />
       </wz-step>
       <wz-step wz-title="Dwelling Details">
-          <h1>How big is your crib, guy?</h1>
+          <h1 style ="padding-top: 100px;">How big is your crib, guy?</h1>
           <form>
               <input type="text" ng-model="wizCtrl.sqFeet" placeholder="Approximate Square Footage">
           </form>
-          <input type="submit" ui-sref="results({jobDetail:wizCtrl.jobDetail})" />
+          <input type="submit" wz-next value="Continue" />
       </wz-step>
 
       <wz-step wz-title="Moving Date">
-        <h1>When are you moving, friend?</h1>
+        <h1 style ="padding-top: 100px;">When are you moving, pal?</h1>
         <form>
-          <input type="text" ng-model="wizCtrl.MovingDay" placeholder="Date">
+          <input type="text" ng-model="wizCtrl.jobDetail.movingDay" placeholder="Date">
         </form>
-        <input type="submit" wz-next value="Continue" />
-      </wz-step>
-      <wz-step>
-        <input type="submit" wz-next value="Finish now" />
+        <input type="submit" ui-sref="results({jobDetail:wizCtrl.jobDetail})" />
       </wz-step>
     </wizard>
   </div>

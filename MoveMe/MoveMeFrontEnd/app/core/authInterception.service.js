@@ -26,7 +26,7 @@
         		httpRequest.headers.Authorization = 'Bearer ' + authData.token;
         	}
 
-        	return config;
+        	return httpRequest;
         }
 
         function responseError(httpResponse) {

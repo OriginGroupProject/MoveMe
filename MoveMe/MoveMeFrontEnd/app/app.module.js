@@ -15,12 +15,14 @@
             'app.results',
             'app.wizard',
             'app.customers',
-            'oitozero.ngSweetAlert'
+            'oitozero.ngSweetAlert',
+            'LocalStorageModule'
+
         ])
         .value('apiUrl', 'http://movemeapi-dev.azurewebsites.net/api/')
 
         .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-            //$httpProvider.interceptors.push('authInterceptorService');
+            $httpProvider.interceptors.push('authInterceptorService');
 
             $urlRouterProvider.otherwise('/home');
             $stateProvider
@@ -58,7 +60,7 @@
                 .state('orders.grid', {
                     url: '/grid',
                     controller: 'OrdersGridController as ordersGridCtrl',
-                    templateUrl: 'app/orders/orders.grid.html'
+                    templateUrl: 'app/ordersModule/orders.grid.html'
                 })
 
             $stateProvider
@@ -67,6 +69,14 @@
                     controller: 'RegisterController as registerCtrl',
                     templateUrl: 'app/register/register.html'
                 })
+
+            $stateProvider
+                .state('results', {
+                    url: '/results/:jobDetail',
+                    controller: 'ResultsController as resultsCtrl',
+                    templateUrl: 'app/results/results.html'
+                })
+
             $stateProvider
                 .state('login', {
                     url: '/login',
